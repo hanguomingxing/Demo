@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.me.daydaystudy.LaunchActivity">
+
+    <include layout="@layout/common_title" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/main_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+
+    <RadioGroup
+        android:id="@+id/footer_main"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@drawable/bottom"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="4px">
+
+        <RadioButton
+            android:id="@+id/rb_home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f5f5f5"
+            android:button="@null"
+            android:drawableTop="@drawable/home_pager"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingTop="8px"
+            android:text="首页"
+            android:textColor="@drawable/main_botton_indicate_text_color" />
+
+        <RadioButton
+            android:id="@+id/rb_my"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f5f5f5"
+            android:button="@null"
+            android:drawableTop="@drawable/course_pager"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingTop="8px"
+            android:text="课程分类"
+            android:textColor="@drawable/main_botton_indicate_text_color" />
+
+        <RadioButton
+            android:id="@+id/rb_friend_circle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f5f5f5"
+            android:button="@null"
+            android:drawableTop="@drawable/circle_pager"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingTop="8px"
+            android:text="圈子"
+            android:textColor="@drawable/main_botton_indicate_text_color" />
+
+        <RadioButton
+            android:id="@+id/rb_download"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f5f5f5"
+            android:button="@null"
+            android:drawableTop="@drawable/my_pager"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:lines="1"
+            android:paddingTop="8px"
+            android:text="我的"
+            android:textColor="@drawable/main_botton_indicate_text_color" />
+    </RadioGroup>
+
+
+</com.zhy.autolayout.AutoLinearLayout>
