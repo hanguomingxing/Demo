@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.activity.MainActivity;
 import com.me.daydaystudy.base.BaseFragment;
-import com.me.daydaystudy.view.FriendViewPager;
+import com.me.daydaystudy.factory.CircleyFragmentFactory;
 
 /**
  * @author :   郗琛
@@ -24,6 +24,7 @@ import com.me.daydaystudy.view.FriendViewPager;
 public class FriendCircleFragment extends BaseFragment {
     private String[] tabTitle = new String[]{"话题", "热门", "关注"};
     private TabLayout tabLayout;
+    private ViewPager viewRoot;
 
     @Override
     public void onAttach(Context context) {
@@ -37,13 +38,12 @@ public class FriendCircleFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewPager viewRoot = (ViewPager) inflater.inflate(R.layout.fragment_circle, null);
+        viewRoot = (ViewPager) inflater.inflate(R.layout.fragment_circle, null);
         viewRoot.setOffscreenPageLimit(2);
         viewRoot.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                Fragment fragment = new MainFragment();
-                return fragment;
+                return CircleyFragmentFactory.getFragmentInstance(position);
             }
 
             @Override

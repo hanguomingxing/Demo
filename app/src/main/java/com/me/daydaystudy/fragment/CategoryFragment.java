@@ -28,7 +28,7 @@ public class CategoryFragment extends BaseFragment {
         HashMap<String, String> stringStringHashMap = new HashMap<>();
 
         HttpManger.getMethod(ConstantUtils.sort, new MyCallBack() {
-            @Override
+                    @Override
             public void onFailure(Call<String> call, Throwable t) {
 
             }
