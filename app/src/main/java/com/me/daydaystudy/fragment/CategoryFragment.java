@@ -5,13 +5,12 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
-
-import java.util.HashMap;
 
 import retrofit2.Call;
 
@@ -22,22 +21,28 @@ import retrofit2.Call;
 
 public class CategoryFragment extends BaseFragment {
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        HashMap<String, String> stringStringHashMap = new HashMap<>();
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initData();
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
         HttpManger.getMethod(ConstantUtils.sort, new MyCallBack() {
                     @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+//                requestChangeViewStatus(ERROR_VIEW);
             }
 
             @Override
             public void onResponse(String response) {
-                System.out.println(response);
+                TextView textView = new TextView(getActivity());
+                textView.setText(response);
+                requestShowNormalView(textView);
             }
         });
-        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }
