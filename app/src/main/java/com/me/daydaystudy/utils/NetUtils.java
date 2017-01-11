@@ -6,10 +6,25 @@ import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.me.daydaystudy.app.MyApplication;
+
 /**
  * 进行网络的判断
  */
 public class NetUtils {
+
+
+    /**
+     * 是否有网
+     */
+    public static boolean isHaveNet() {
+        //判断当前的网络状态
+        if (NET_WORK_TYPE_INVALID != NetUtils.getNetWorkType(MyApplication.getContext()))
+            return true;
+        return false;
+    }
+
+
     /**
      * 没有网络
      */

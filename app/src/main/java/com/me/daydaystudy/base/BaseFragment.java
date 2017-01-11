@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.utils.NetUtils;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -26,13 +28,30 @@ public class BaseFragment extends Fragment {
     public static final int NO_LOGIN_VIEW = 3;
     public static final int EMPTY_VIEW = 4;
     public static final int ERROR_VIEW = 5;
+    private FrameLayout frameLayout;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //默认显示正在加载界面
-        return getViewForMap(LOADING_VIEW);
+        frameLayout = new FrameLayout(getActivity());
+        //显示默认的视图
+        requestChangeViewStatus(LOADING_VIEW);
+        return frameLayout;
+    }
+
+    /**
+     * 加载数据
+     */
+    protected void initData() {
+        if (NetUtils.isHaveNet()) {
+            //设置正在加载
+            requestChangeViewStatus(LOADING_VIEW);
+        } else {
+            //设置没有网络
+            requestChangeViewStatus(NO_NET_VIEW);
+        }
     }
 
     /**
@@ -57,6 +76,7 @@ public class BaseFragment extends Fragment {
      */
     protected final void requestShowNormalView(View view) {
         viewMap.put(NORMAL_VIEW, view);
+        frameLayout.addView(view);
         requestChangeViewStatus(NORMAL_VIEW);
     }
 
@@ -76,23 +96,36 @@ public class BaseFragment extends Fragment {
                 break;
             case ERROR_VIEW:
                 view = View.inflate(getActivity(), R.layout.base_error_fragment, null);
+                requestRefresh(view);
                 break;
             case NO_NET_VIEW:
                 view = View.inflate(getActivity(), R.layout.base_no_net_fragment, null);
+                requestRefresh(view);
                 break;
             case NO_LOGIN_VIEW:
                 view = View.inflate(getActivity(), R.layout.base_no_login_fragment, null);
                 break;
             case EMPTY_VIEW:
                 view = View.inflate(getActivity(), R.layout.base_empty_fragment, null);
+                requestRefresh(view);
                 break;
             case NORMAL_VIEW:
             default:
                 break;
         }
         //保存到集合并且返回
-        viewMap.put(LOADING_VIEW, view);
+        viewMap.put(viewType, view);
+        frameLayout.addView(view);
         return view;
+    }
+
+    private void requestRefresh(View view) {
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initData();
+            }
+        });
     }
 
 }
