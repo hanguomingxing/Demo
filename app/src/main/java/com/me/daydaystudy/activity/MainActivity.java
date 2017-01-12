@@ -110,6 +110,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.title_search).setVisibility(position != 3 ? View.VISIBLE : View.GONE);
         findViewById(R.id.title_home).setVisibility(position == 0 ? View.VISIBLE : View.GONE);
         findViewById(R.id.title_text).setVisibility(position == 1 ? View.VISIBLE : View.GONE);
+        findViewById(R.id.mine_title).setVisibility(position == 3 ? View.VISIBLE : View.GONE);
     }
 
 

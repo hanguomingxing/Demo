@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
+    <!--默认进度条-->
     <style name="progressbar_style">
         <item name="android:maxWidth">50.0dip</item>
         <item name="android:maxHeight">50.0dip</item>
@@ -16,4 +16,12 @@
         <item name="android:minWidth">50.0dip</item>
         <item name="android:minHeight">50.0dip</item>
     </style>
+
+    <!--圆形imageView需要的-->
+    <declare-styleable name="CircleImageView">
+        <attr name="civ_border_width" format="dimension" />
+        <attr name="civ_border_color" format="color" />
+        <attr name="civ_border_overlay" format="boolean" />
+        <attr name="civ_fill_color" format="color" />
+    </declare-styleable>
 </resources>
