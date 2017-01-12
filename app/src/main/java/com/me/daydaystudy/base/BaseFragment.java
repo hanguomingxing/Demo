@@ -1,5 +1,6 @@
 package com.me.daydaystudy.base;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -31,15 +32,27 @@ public class BaseFragment extends Fragment {
     private FrameLayout frameLayout;
 
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        frameLayout = new FrameLayout(getActivity());
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //默认显示正在加载界面
-        frameLayout = new FrameLayout(getActivity());
-        //显示默认的视图
         requestChangeViewStatus(LOADING_VIEW);
         return frameLayout;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        //显示默认的视图
+        initData();
+    }
+
 
     /**
      * 加载数据
@@ -111,7 +124,7 @@ public class BaseFragment extends Fragment {
                 break;
             case NORMAL_VIEW:
             default:
-                break;
+                throw new RuntimeException("no select view");
         }
         //保存到集合并且返回
         viewMap.put(viewType, view);

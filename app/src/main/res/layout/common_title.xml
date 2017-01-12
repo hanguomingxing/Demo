@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?><!--所有标题的title-->
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/title"
+    android:id="@+id/commont_title"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/red">
+
+    <TextView
+        android:id="@+id/mine_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/my"
+        android:gravity="center"
+        android:text="我的主页"
+        android:textColor="@color/white"
+        android:textSize="35px"
+        android:visibility="gone" />
 
     <!--左边的布局-->
     <com.zhy.autolayout.AutoLinearLayout
