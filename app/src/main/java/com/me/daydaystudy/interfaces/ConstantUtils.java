@@ -9,7 +9,10 @@ public interface ConstantUtils {
 
     //基本URL
     String BASE_URL = "http://www.meirixue.com/";
-
+    //圈子里的话题
+    String CircleTopicUrl = "api.php?c=circle&a=getCircleNamesIndexV2";
+    //圈子里的热门
+    String CircleHotUrl = "api.php?c=circle&a=getCirclePostListByTid";
     // 登录接口
     String signIn = "api.php?c=login&a=index";
     // 注册接口获得短信的验证码

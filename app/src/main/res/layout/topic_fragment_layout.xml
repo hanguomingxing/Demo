@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
-</LinearLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.youth.banner.Banner
+            android:id="@+id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            app:image_scale_type="center_crop"
+            app:indicator_drawable_selected="@drawable/dot_focus"
+            app:indicator_drawable_unselected="@drawable/dot_normal"
+            />
+
+        <TextView
+            android:id="@+id/tvMyTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="25px"
+            android:text="我的圈子"
+            android:textColor="@color/black"
+             />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/myTopic_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+             />
+
+        <TextView
+            android:id="@+id/tvTopic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="25px"
+            android:text="热门圈子"
+            android:textColor="@color/black" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/topic_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.zhy.autolayout.AutoLinearLayout>
+</ScrollView>
