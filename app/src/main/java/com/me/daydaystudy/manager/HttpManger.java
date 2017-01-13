@@ -141,7 +141,7 @@ public class HttpManger {
             respond = SaveCache.getCache(url);
         }
         //如果本地有数据，直接返回
-        if (TextUtils.isEmpty(respond)) {
+        if (!TextUtils.isEmpty(respond)) {
             callback.onResponse(respond);
             return;
         }
