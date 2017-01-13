@@ -2,13 +2,13 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="#F7FBF7"
     android:orientation="vertical">
 
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="380px"
         android:layout_marginTop="10px"
-        android:background="@color/transparent"
         android:orientation="horizontal">
 
 

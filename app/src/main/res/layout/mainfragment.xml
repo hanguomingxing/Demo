@@ -20,12 +20,10 @@
                 android:id="@+id/banner"
                 android:layout_width="match_parent"
                 android:layout_height="300px"
-                app:image_scale_type="fit_xy"
-                app:indicator_drawable_selected="@drawable/point_mormal"
-                app:indicator_drawable_unselected="@drawable/point_selected"
-                app:indicator_height="13px"
-                app:indicator_margin="8px"
-                app:indicator_width="13px" />
+                android:background="@color/white"
+                app:image_scale_type="center_crop"
+                app:indicator_drawable_selected="@drawable/dot_focus"
+                app:indicator_drawable_unselected="@drawable/dot_normal" />
             <!--多彩生活-->
             <include layout="@layout/main_learn" />
             <!--最强思路-->
@@ -56,18 +54,18 @@
                     <ImageView
                         android:id="@+id/main_recommended_memory"
                         android:layout_width="0px"
-                        android:layout_height="match_parent"
+                        android:layout_height="240px"
                         android:layout_weight="1"
                         android:padding="5px"
-                        android:scaleType="fitXY" />
+                        android:scaleType="centerCrop" />
 
                     <ImageView
                         android:id="@+id/main_recommended_love"
                         android:layout_width="0px"
-                        android:layout_height="match_parent"
+                        android:layout_height="240px"
                         android:layout_weight="1"
                         android:padding="5px"
-                        android:scaleType="fitXY" />
+                        android:scaleType="centerCrop" />
                 </com.zhy.autolayout.AutoLinearLayout>
 
                 <android.support.v7.widget.RecyclerView
