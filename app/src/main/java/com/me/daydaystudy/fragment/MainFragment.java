@@ -167,7 +167,7 @@ public class MainFragment extends BaseFragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent=new Intent(getActivity(), DetailsActivity.class);
+                        Intent intent = new Intent(getActivity(), DetailsActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -257,7 +257,12 @@ public class MainFragment extends BaseFragment {
 
     private void initHot() {
         recy = (RecyclerView) view.findViewById(R.id.main_hot_rv);
-        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(getContext(), 2) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         recy.setLayoutManager(layoutManager);
         recy.setAdapter(new CommonAdapter<MainBean.DataBean.HotcourseBean>(getActivity(), R.layout.main_hot_vp_item, hotcourseBeen) {
             @Override

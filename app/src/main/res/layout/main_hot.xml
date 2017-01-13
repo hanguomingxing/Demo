@@ -35,9 +35,9 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginBottom="20px"
-            android:layout_marginTop="20px"
-            android:background="@color/text_normal_color" />
+            android:layout_marginBottom="10px"
+            android:layout_marginTop="10px"
+            android:background="#F1F1F1" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_hot_rv"
