@@ -1,6 +1,7 @@
 package com.me.daydaystudy.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -14,7 +15,6 @@ import android.view.ViewGroup;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.activity.MainActivity;
 import com.me.daydaystudy.base.BaseFragment;
-import com.me.daydaystudy.view.FriendViewPager;
 
 /**
  * @author :   郗琛
@@ -22,6 +22,7 @@ import com.me.daydaystudy.view.FriendViewPager;
  */
 
 public class FriendCircleFragment extends BaseFragment {
+    private ViewPager viewRoot;
     private String[] tabTitle = new String[]{"话题", "热门", "关注"};
     private TabLayout tabLayout;
 
@@ -29,15 +30,13 @@ public class FriendCircleFragment extends BaseFragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         tabLayout = ((MainActivity) getActivity()).getTabLayout();
-        tabLayout.setTabTextColors(0xFFFFFFFF, 0xFFFFFFFF);
-        tabLayout.setSelectedTabIndicatorColor(0xFFFFFFFF);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
     }
+
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewPager viewRoot = (ViewPager) inflater.inflate(R.layout.fragment_circle, null);
+        viewRoot = (ViewPager) inflater.inflate(R.layout.fragment_circle, null);
         viewRoot.setOffscreenPageLimit(2);
         viewRoot.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
             @Override
@@ -48,7 +47,7 @@ public class FriendCircleFragment extends BaseFragment {
 
             @Override
             public int getCount() {
-                return 3;
+                return tabTitle.length;
             }
 
             @Override
@@ -57,6 +56,10 @@ public class FriendCircleFragment extends BaseFragment {
             }
         });
         tabLayout.setupWithViewPager(viewRoot);
+        tabLayout.setTabTextColors(Color.WHITE, Color.WHITE);
+        tabLayout.setSelectedTabIndicatorColor(Color.WHITE);
         return viewRoot;
     }
+
+
 }

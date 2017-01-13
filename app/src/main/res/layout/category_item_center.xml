@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--上方标题-->
+    <com.zhy.autolayout.AutoRelativeLayout
+        android:id="@+id/sort_rl_item1"
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:layout_marginBottom="16px"
+        android:background="#ffffff"
+        android:divider="@drawable/sort_shape_divider_linear"
+        android:paddingLeft="30px"
+        android:paddingRight="30px">
+
+        <ImageView
+            android:id="@+id/sort_icon_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/heart" />
+
+        <TextView
+            android:id="@+id/sort_tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22px"
+            android:layout_toRightOf="@id/sort_icon_left"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/sort_icon_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/down" />
+    </com.zhy.autolayout.AutoRelativeLayout>
+
+    <!--下方数据-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/category_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20px"
+        android:paddingLeft="18px"
+        android:paddingRight="18px"
+        android:paddingTop="6px"
+        android:visibility="gone" />
+
+
+</com.zhy.autolayout.AutoLinearLayout>
+
+

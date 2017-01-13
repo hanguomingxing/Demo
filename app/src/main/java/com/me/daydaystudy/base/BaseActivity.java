@@ -9,6 +9,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.me.daydaystudy.R;
 import com.me.daydaystudy.app.MyApplication;
 import com.me.daydaystudy.utils.RunnablePermissionUtils;
 
@@ -28,6 +29,8 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //设置背景
+        getWindow().setBackgroundDrawableResource(R.color.common_background_color);
         //将自己添加到activity集合中
         MyApplication.addActivityList(this);
         initData();

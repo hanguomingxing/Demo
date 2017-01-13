@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:src="@drawable/rrr" />
+            android:src="@drawable/wunai" />
     </com.zhy.autolayout.AutoLinearLayout>
 
     <com.zhy.autolayout.AutoLinearLayout
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50px"
-            android:text="出错了，什么鬼" />
+            android:text="网络出错了，点击重试" />
 
 
     </com.zhy.autolayout.AutoLinearLayout>

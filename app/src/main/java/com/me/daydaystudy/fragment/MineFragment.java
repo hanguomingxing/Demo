@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.MainActivity;
 import com.me.daydaystudy.base.BaseFragment;
 
 /**
