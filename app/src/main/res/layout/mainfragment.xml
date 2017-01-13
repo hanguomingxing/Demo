@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorH"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrol"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--轮播-->
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="300px"
+                app:image_scale_type="fit_xy"
+                app:indicator_drawable_selected="@drawable/point_mormal"
+                app:indicator_drawable_unselected="@drawable/point_selected"
+                app:indicator_height="13px"
+                app:indicator_margin="8px"
+                app:indicator_width="13px" />
+            <!--多彩生活-->
+            <include layout="@layout/main_learn" />
+            <!--最强思路-->
+            <include layout="@layout/main_strongest" />
+            <!--热门课程-->
+            <include layout="@layout/main_hot" />
+            <!--小编推荐-->
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17px"
+                android:background="@color/transparent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="240px"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="15px"
+                    android:paddingTop="10px"
+                    android:src="@mipmap/recommend" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="5px">
+
+                    <ImageView
+                        android:id="@+id/main_recommended_memory"
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="5px"
+                        android:scaleType="fitXY" />
+
+                    <ImageView
+                        android:id="@+id/main_recommended_love"
+                        android:layout_width="0px"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="5px"
+                        android:scaleType="fitXY" />
+                </com.zhy.autolayout.AutoLinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_recommended_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoLinearLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:background="@color/transparent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="260px"
+                    android:layout_height="80px"
+                    android:paddingLeft="15px"
+                    android:paddingTop="10px"
+                    android:src="@mipmap/study2" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_learn_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </android.support.v7.widget.RecyclerView>
+            </com.zhy.autolayout.AutoLinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </ScrollView>
+</com.zhy.autolayout.AutoLinearLayout>

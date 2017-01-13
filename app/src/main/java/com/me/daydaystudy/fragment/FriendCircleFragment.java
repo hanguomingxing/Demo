@@ -48,7 +48,7 @@ public class FriendCircleFragment extends BaseFragment {
 
             @Override
             public int getCount() {
-                return 3;
+                return tabTitle.length;
             }
 
             @Override
