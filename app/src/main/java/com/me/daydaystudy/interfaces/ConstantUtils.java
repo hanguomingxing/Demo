@@ -9,7 +9,7 @@ public interface ConstantUtils {
 
     //基本URL
     String BASE_URL = "http://www.meirixue.com/";
-
+    
     // 登录接口
     String signIn = "api.php?c=login&a=index";
     // 注册接口获得短信的验证码
@@ -51,11 +51,10 @@ public interface ConstantUtils {
     // 分享相关
     String SHARE_ADDRESS = "api.php?c=course&a=getwapinfo&courseid=";
 
-
     long CLICKAPART = 3000;
-
     int SUCCESS = 1000;
-
+    //首页，轮播...
+    String USER_MAIN="api.php?a=indexv9&c=index";
     // 课程详情页评论
     String USER_COMMENT = "api.php?c=course&a=getCourseComment";
     // 我的课程，包括正在学和已学完

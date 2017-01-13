@@ -17,10 +17,14 @@
     <color name="red">#F95D51</color>
     <color name="go_comment_backgroud">#33CCCC</color>
     <color name="blue">#0000ff</color>
-    <color name="transparent">#00000000</color>
+    <color name="transparent">#FFFFFF</color>
     <color name="course_detail_bg">#525252</color>
     <color name="text_normal_color">#666666</color>
-
+    <color name="colorRet">#F00</color>
+    <color name="colorH">#EBEBEB</color>
+    <color name="colorR">#FFAA25</color>
+    <color name="colorB">#5BA0FF</color>
+    <color name="colorT">#7f000000</color>
 
 
 </resources>
