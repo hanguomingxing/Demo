@@ -2,8 +2,7 @@
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
     <!--三张图片-->
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/hot_llt_three"
@@ -17,25 +16,30 @@
             android:id="@+id/hot_iv1"
             android:layout_width="0px"
             android:layout_height="240px"
-            android:layout_weight="1" />
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/hot_iv2"
             android:layout_width="0px"
             android:layout_height="240px"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/hot_iv3"
             android:layout_width="0px"
             android:layout_height="240px"
-            android:layout_weight="1" />
+            android:layout_marginLeft="10px"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
     </com.zhy.autolayout.AutoLinearLayout>
     <!--两张图-->
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/hot_llt_two"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="280px"
         android:orientation="horizontal"
         android:padding="10px"
         android:visibility="gone">
@@ -43,27 +47,33 @@
         <ImageView
             android:id="@+id/hot_two_iv1"
             android:layout_width="0px"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="300px"
+            android:layout_gravity="center"
+            android:layout_marginRight="10px"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
 
         <ImageView
             android:id="@+id/hot_two_iv2"
             android:layout_width="0px"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:scaleType="centerCrop" />
     </com.zhy.autolayout.AutoLinearLayout>
     <!--大图-->
     <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/hot_llt_first"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10px">
+        android:padding="10px"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/hot_first_iv"
             android:layout_width="match_parent"
-            android:layout_height="350px" />
+            android:layout_height="350px"
+            android:scaleType="centerCrop" />
 
     </com.zhy.autolayout.AutoLinearLayout>
 </com.zhy.autolayout.AutoLinearLayout>

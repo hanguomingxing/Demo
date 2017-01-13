@@ -1,7 +1,5 @@
 package com.me.daydaystudy.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -46,12 +44,6 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
     private RecyclerView mytopic_recyclerView;
     private TextView tvTopic;
     private TextView tvMyTopic;
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initData();
-    }
 
     /**
      * 请求网络
