@@ -125,8 +125,14 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
      */
     private void setHotCircleData() {
 
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()){
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         topic_recyclerView.setLayoutManager(linearLayoutManager);
+
         topic_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), RecyclerView.VERTICAL));
         commonAdapter = new CommonAdapter<TopicData.DataBean.CircleBean>(getActivity(), R.layout.hotcircle_recycleritem_layout, hotList) {
             @Override
@@ -146,7 +152,6 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                         //移除
                         hotList.remove(adapterPosition);
                         commonAdapter.notifyItemRemoved(adapterPosition);
-
                     }
                 });
             }

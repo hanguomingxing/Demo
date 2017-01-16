@@ -8,15 +8,15 @@
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/hot_editor_back"
         android:gravity="center"
-        android:padding="30px">
+        android:padding="20px">
 
-        <ImageView
+        <CheckBox
             android:id="@+id/hot_like_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/like_selector" />
+            android:background="@drawable/like_selector"
+            android:button="@null" />
 
         <TextView
             android:id="@+id/hot_likeCount"
@@ -27,13 +27,17 @@
             android:text="1" />
     </com.zhy.autolayout.AutoLinearLayout>
 
+    <View
+        android:layout_width="2px"
+        android:layout_height="match_parent"
+        android:background="#EEEEEEEE" />
+
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/hot_editor_back"
         android:gravity="center"
-        android:padding="30px">
+        android:padding="20px">
 
         <ImageView
             android:id="@+id/hot_share_iv"
@@ -49,14 +53,16 @@
             android:gravity="center"
             android:text="1" />
     </com.zhy.autolayout.AutoLinearLayout>
-
+    <View
+        android:layout_width="2px"
+        android:layout_height="match_parent"
+        android:background="#EEEEEEEE" />
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@drawable/hot_editor_back"
         android:gravity="center"
-        android:padding="30px">
+        android:padding="20px">
 
         <ImageView
             android:id="@+id/hot_message_iv"

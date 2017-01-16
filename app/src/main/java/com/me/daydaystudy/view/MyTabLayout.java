@@ -27,7 +27,7 @@ public class MyTabLayout extends TabLayout implements ViewPager.OnPageChangeList
     private TextView lastTextView;
     private int normalTextColor = 0xFFFFFFFF;
     private int selectTextColor = 0xFF000000;
-    private int defaultIndicatorColor = 0xFF000000;
+    private int defaultIndicatorColor = 0xFFFFE625;
 
 
     public MyTabLayout(Context context) {

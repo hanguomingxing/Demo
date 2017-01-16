@@ -1,14 +1,10 @@
 package com.me.daydaystudy.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
@@ -18,27 +14,25 @@ import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
 import com.me.daydaystudy.utils.ToastUtil;
+import com.me.daydaystudy.view.MyTabLayout;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
+
+import static com.me.daydaystudy.R.id.hot_TabLayout;
 
 /**
  * @author : 张鸿鹏
  * @date : 2017/1/11.
  */
 
-public class HotFragment extends BaseFragment implements ViewPager.OnPageChangeListener {
+public class HotFragment extends BaseFragment {
 
     private View inflate;
     private ViewPager hot_viewPager;
-    private TabLayout hot_tabLayout;
-    private int lastPosition = -1;
-    private TextView currentTextView;
-    private TextView nextTextView;
-    private TextView lastTextView;
+    private MyTabLayout hot_tabLayout;
     private ArrayList<HotTitleData.DataBean> list = new ArrayList<>();
     private ArrayList<String> titleList = new ArrayList<>();
 
@@ -63,8 +57,8 @@ public class HotFragment extends BaseFragment implements ViewPager.OnPageChangeL
                 HotTitleData hotTitleData = new Gson().fromJson(response, HotTitleData.class);
                 List<HotTitleData.DataBean> data = hotTitleData.getData();
                 if (data != null && data.size() > 0) {
-//                    list.add(new HotTitleData.DataBean());
-//                    titleList.add("推荐");
+                    list.add(new HotTitleData.DataBean());
+                    titleList.add("推荐");
                     list.addAll(data);
                     for (int i = 0; i < data.size(); i++) {
                         titleList.add(data.get(i).getName());
@@ -83,8 +77,9 @@ public class HotFragment extends BaseFragment implements ViewPager.OnPageChangeL
     private void initView() {
         inflate = View.inflate(getActivity(), R.layout.hot_fragment_layout, null);
         hot_viewPager = (ViewPager) inflate.findViewById(R.id.hot_viewPager);
-        hot_tabLayout = (TabLayout) inflate.findViewById(R.id.hot_TabLayout);
+        hot_tabLayout = (MyTabLayout) inflate.findViewById(hot_TabLayout);
 
+        hot_tabLayout.setupWithViewPager(hot_viewPager);
         requestShowNormalView(inflate);
     }
 
@@ -93,11 +88,6 @@ public class HotFragment extends BaseFragment implements ViewPager.OnPageChangeL
      */
     private void addViewPagerAndTabLayout() {
 
-        hot_tabLayout.setupWithViewPager(hot_viewPager);
-        hot_viewPager.addOnPageChangeListener(this);
-        hot_tabLayout.setTabTextColors(0xFFFFFFFF, 0xFFFFE625);
-        currentTextView = getTabView(0);
-        nextTextView = getTabView(1);
         hot_viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -118,70 +108,8 @@ public class HotFragment extends BaseFragment implements ViewPager.OnPageChangeL
                 return titleList.get(position);
             }
         });
+//        hot_tabLayout.setViewPager(hot_viewPager);
     }
 
 
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        //最终取值  0-0.5之间  也就是 0-150之间
-//        int color = (int) (positionOffset * 100);
-        //设置透明度
-//        changeTextColorAlpha(color, lastPosition > position ? RIGHT : LEFT);
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-        if (state == ViewPager.SCROLL_STATE_IDLE) {
-            lastTextView = getTabView(hot_viewPager.getCurrentItem() - 1);
-            currentTextView = getTabView(hot_viewPager.getCurrentItem());
-            nextTextView = getTabView(hot_viewPager.getCurrentItem() + 1);
-            //记录上一个position
-            lastPosition = hot_viewPager.getCurrentItem();
-        }
-    }
-
-    private static final int LEFT = 0;
-    private static final int RIGHT = 1;
-
-    private void changeTextColorAlpha(int color, int i) {
-//        FFE625
-        if (i == LEFT) {
-            if (nextTextView != null)
-                nextTextView.setTextColor(Color.argb(255, 255, color * (255 - 230) + 230, color * (255 - 37) + 37));
-        } else if (i == RIGHT) {
-            if (lastTextView != null)
-                lastTextView.setTextColor(Color.argb(255, 255, color * (255 - 230) + 230, color * (255 - 37) + 37));
-        }
-        if (currentTextView != null)
-            currentTextView.setTextColor(Color.argb(255, 255, color * (255 - 230) + 230, color * (255 - 37) + 37));
-    }
-
-    /**
-     * 获取tabView
-     *
-     * @param position
-     * @return
-     */
-    private TextView getTabView(int position) {
-        if (position > titleList.size() - 1 || position < 0)
-            return null;
-        View tabView = ((ViewGroup) hot_tabLayout.getChildAt(0)).getChildAt(position);
-        if (tabView == null)
-            return null;
-        Class<? extends View> tabViewClass = tabView.getClass();
-        try {
-            Field textView = tabViewClass.getDeclaredField("mTextView");
-            textView.setAccessible(true);
-            return (TextView) textView.get(tabView);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
 }
