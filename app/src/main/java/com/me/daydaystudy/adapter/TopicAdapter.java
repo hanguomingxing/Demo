@@ -1,17 +1,23 @@
 package com.me.daydaystudy.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.WebViewActivity;
 import com.me.daydaystudy.bean.HotContentData;
+import com.me.daydaystudy.bean.SpannedBean;
 import com.me.daydaystudy.view.ShowDialog;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -24,35 +30,47 @@ import java.util.List;
  * @date : 2017/1/16.
  */
 
-public class TopicAdapter extends CommonAdapter<HotContentData.DataBean> {
+public class TopicAdapter extends CommonAdapter<HotContentData.DataBean>  {
 
     private final Context context;
     private final int layoutId;
     private final List<HotContentData.DataBean> datas;
-            ;
+    ;
     private String[] imageData;
+    private TextView textView;
+    private LinearLayout.LayoutParams layoutParams;
+    private AutoLinearLayout type_llt;
 
     public TopicAdapter(Context context, int layoutId, List<HotContentData.DataBean> datas) {
         super(context, layoutId, datas);
-        this.context=context;
-        this.layoutId=layoutId;
-        this.datas=datas;
+        this.context = context;
+        this.layoutId = layoutId;
+        this.datas = datas;
     }
 
 
-
     @Override
-    protected void convert(ViewHolder holder, HotContentData.DataBean dataBean, int position) {
+    protected void convert(ViewHolder holder, final HotContentData.DataBean dataBean, int position) {
+        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, WebViewActivity.class);
+                intent.putExtra("content", dataBean.getP_content());
+                context.startActivity(intent);
+            }
+        });
+
+
         View xian = holder.getView(R.id.xian);
 
         if (position == 0) {
             xian.setVisibility(View.GONE);
         }
         //第三方分享
-        holder.getView(R.id.hot_share_iv).setOnClickListener(new View.OnClickListener() {
+        holder.getView(R.id.hot_share_llt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new ShowDialog().showBottomSheetDialog(context);
+                new ShowDialog(context, dataBean.getP_title());
             }
         });
         //用户头像
@@ -75,9 +93,25 @@ public class TopicAdapter extends CommonAdapter<HotContentData.DataBean> {
         holder.setText(R.id.hot_shareCount, dataBean.getP_sharecount());
         holder.setText(R.id.hot_messageCount, dataBean.getP_replycount());
         //类型标签
-        TextView hot_type = holder.getView(R.id.hot_type);
+        type_llt = holder.getView(R.id.type_llt);
         Spanned spanned = Html.fromHtml(dataBean.getP_tids());
-        hot_type.setText(spanned);
+        final SpannedBean[] spannedBean = new Gson().fromJson(spanned.toString(), SpannedBean[].class);
+        type_llt.removeAllViews();
+        for (int i = 0; i < spannedBean.length; i++) {
+            textView = new TextView(context);
+            textView.setText("#" + spannedBean[i].getTname() + "#");
+            textView.setTextColor(Color.parseColor("#F74D40"));
+            final int finalI = i;
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                   Toast.makeText(context, spannedBean[finalI].getTname()+"———"+ finalI, Toast.LENGTH_SHORT).show();
+                }
+            });
+            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(10, 0, 10, 0);
+        }
+        type_llt.addView(textView, layoutParams);
         ImageView hot_first_iv = holder.getView(R.id.hot_first_iv);
         ImageView hot_two_iv1 = holder.getView(R.id.hot_two_iv1);
         ImageView hot_two_iv2 = holder.getView(R.id.hot_two_iv2);
@@ -122,4 +156,5 @@ public class TopicAdapter extends CommonAdapter<HotContentData.DataBean> {
             }
         }
     }
+
 }

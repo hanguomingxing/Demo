@@ -47,7 +47,8 @@
         <activity android:name=".activity.MyProjectActivity" />
         <activity android:name=".activity.ClassListActivity"></activity>
         <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.TopicActivity"></activity>
+        <activity android:name=".activity.TopicActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>

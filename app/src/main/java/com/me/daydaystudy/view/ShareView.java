@@ -2,6 +2,7 @@ package com.me.daydaystudy.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.me.daydaystudy.R;
@@ -34,6 +35,12 @@ public class ShareView extends ImageView {
      * 实现方法
      */
     private void init() {
+        this.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new ShowDialog(getContext());
+            }
+        });
         this.setImageResource(R.drawable.share);
     }
 
