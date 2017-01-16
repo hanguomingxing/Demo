@@ -3,7 +3,8 @@ package com.me.daydaystudy.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
+
+import com.me.daydaystudy.utils.SharedPreferencesUtils;
 
 import org.xutils.x;
 
@@ -16,26 +17,28 @@ import java.util.ArrayList;
 
 public class MyApplication extends Application {
 
+    private static final String IS_LOGIN_ED = "isLoginEd";
     private static ArrayList<Activity> activityList = new ArrayList();
     private static Context mContext = null;
-    private static boolean isLogined = false;
+    private static boolean isLoginEd = false;
 
     /**
      * 查询是否登陆
      *
      * @return
      */
-    public static boolean isLogined() {
-        return isLogined;
+    public static boolean isLoginEd() {
+        return isLoginEd;
     }
 
     /**
      * 设置是否登陆
      *
-     * @param isLogined
+     * @param isLoginEd
      */
-    public static void setIsLogined(boolean isLogined) {
-        MyApplication.isLogined = isLogined;
+    public static void setIsLoginEd(boolean isLoginEd) {
+        MyApplication.isLoginEd = isLoginEd;
+        SharedPreferencesUtils.saveBoolean(IS_LOGIN_ED, isLoginEd);
     }
 
     /**
@@ -77,6 +80,7 @@ public class MyApplication extends Application {
         mContext = getApplicationContext();
 
         x.Ext.init(this);
+        isLoginEd = SharedPreferencesUtils.getBoolean(IS_LOGIN_ED, false);
     }
 
 }
