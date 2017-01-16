@@ -43,7 +43,7 @@ public class HttpManger {
      * @param callback
      * @param time     超时时间
      */
-    public static void getMethod(final String url, final MyCallBack callback, int time) {
+    public static void getMethod(final String url, final MyCallBack callback, final int time) {
         String respond = "";
         if (time > 0) {
             respond = SaveCache.getCache(url);
@@ -62,7 +62,7 @@ public class HttpManger {
 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                SaveCache.saveCache(url, response.body());
+                SaveCache.saveCache(url, response.body(), time);
                 callback.onResponse(response.body());
             }
 
@@ -135,35 +135,26 @@ public class HttpManger {
      * @param map
      * @param callback
      */
-    public static void postMethod(boolean isReadCookie, boolean isSaveCookie, final String url, Map<String, String> map, final MyCallBack callback, int time) {
-        String respond = "";
+    public static void postMethod(boolean isReadCookie, boolean isSaveCookie, final String url, Map<String, String> map, final MyCallBack callback, final int time) {
         if (time > 0) {
-            respond = SaveCache.getCache(url);
-        }
-        //如果本地有数据，直接返回
-        if (!TextUtils.isEmpty(respond)) {
-            callback.onResponse(respond);
-            return;
-        }
-        OkHttpClient httpClient = null;
-        if (isReadCookie && !isSaveCookie) {
-            httpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new ReadCookiesInterceptor())
-                    .build();
-        } else if (isSaveCookie && !isReadCookie) {
-            httpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new SaveCookiesInterceptor())
-                    .build();
-        } else if (isSaveCookie && isReadCookie) {
-            httpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new SaveCookiesInterceptor()).addInterceptor(new ReadCookiesInterceptor())
-                    .build();
-        } else if (!isSaveCookie && !isReadCookie) {
-            httpClient = new OkHttpClient.Builder()
-                    .build();
+            //如果本地有数据，直接返回
+            if (!TextUtils.isEmpty(SaveCache.getCache(url))) {
+                callback.onResponse(SaveCache.getCache(url));
+                return;
+            }
         }
 
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).client(httpClient).addConverterFactory(ScalarsConverterFactory.create()).build();
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        if (isReadCookie) {
+            builder.addInterceptor(new ReadCookiesInterceptor());
+        } else if (isSaveCookie) {
+            builder.addInterceptor(new SaveCookiesInterceptor());
+        }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(builder.build())
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
 
         ProjectAPI projectAPI = retrofit.create(ProjectAPI.class);
 
@@ -171,7 +162,7 @@ public class HttpManger {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                SaveCache.saveCache(url, response.body());
+                SaveCache.saveCache(url, response.body(), time);
                 callback.onResponse(response.body());
             }
 

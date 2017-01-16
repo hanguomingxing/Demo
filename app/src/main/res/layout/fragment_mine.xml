@@ -7,10 +7,12 @@
 
     <!--未登录显示-->
     <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="290px"
         android:background="@drawable/my2"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <!--头像-->
         <com.me.daydaystudy.view.CircleImageView
@@ -54,7 +56,9 @@
         </com.zhy.autolayout.AutoRelativeLayout>
     </com.zhy.autolayout.AutoLinearLayout>
 
+    <!--登陆显示-->
     <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/loginEd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/my2"
@@ -124,6 +128,7 @@
         </com.zhy.autolayout.AutoLinearLayout>
     </com.zhy.autolayout.AutoLinearLayout>
 
+    <!--具体列表-->
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -134,13 +139,15 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/myproject"
             android:layout_width="match_parent"
-            android:layout_height="103px"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30px"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/mya" />
@@ -153,7 +160,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="我的课程"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
@@ -166,12 +173,14 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/collection"
             android:layout_width="match_parent"
-            android:layout_height="103px"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/myb" />
@@ -184,7 +193,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="收藏"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
@@ -197,12 +206,14 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/discount"
             android:layout_width="match_parent"
-            android:layout_height="103px"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/coupon" />
@@ -215,7 +226,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="优惠券"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
@@ -228,12 +239,14 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/offline_load"
             android:layout_width="match_parent"
-            android:layout_height="103px"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/myc" />
@@ -246,7 +259,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="离线下载"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
@@ -259,12 +272,14 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/mymessage"
             android:layout_width="match_parent"
-            android:layout_height="103px"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/myd" />
@@ -277,7 +292,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="我的消息"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
@@ -291,12 +306,14 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/feedback"
             android:layout_width="match_parent"
-            android:layout_height="103px"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/mye" />
@@ -309,7 +326,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="意见反馈"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
@@ -321,13 +338,15 @@
         <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/setting"
             android:layout_width="match_parent"
-            android:layout_height="103px"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/mine_list_padding"
+            android:paddingTop="@dimen/mine_list_padding">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="50px"
-                android:layout_height="50px"
+                android:layout_width="@dimen/mine_pic_size"
+                android:layout_height="@dimen/mine_pic_size"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:src="@drawable/myf" />
@@ -340,7 +359,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="22px"
                 android:text="设置"
-                android:textSize="40px" />
+                android:textSize="@dimen/mine_text_size" />
 
             <include layout="@layout/mine_right_icon" />
 
