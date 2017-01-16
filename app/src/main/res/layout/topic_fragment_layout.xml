@@ -1,55 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.liaoinstan.springview.widget.SpringView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/springView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none">
+    android:layout_height="match_parent">
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:scrollbars="none">
 
-        <com.youth.banner.Banner
-            android:id="@+id/banner"
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
-            android:layout_height="300px"
-            app:image_scale_type="center_crop"
-            app:indicator_drawable_selected="@drawable/dot_focus"
-            app:indicator_drawable_unselected="@drawable/dot_normal" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvMyTopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="25px"
-            android:text="我的圈子"
-            android:textColor="@color/black" />
+            <com.youth.banner.Banner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="300px"
+                app:image_scale_type="center_crop"
+                app:indicator_drawable_selected="@drawable/dot_focus"
+                app:indicator_drawable_unselected="@drawable/dot_normal" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/myTopic_recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tvTopic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="25px"
-            android:text="热门圈子"
-            android:textColor="@color/black" />
-
-
-        <com.zhy.autolayout.AutoRelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tvMyTopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="25px"
+                android:text="我的圈子"
+                android:textColor="@color/black" />
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/topic_recyclerView"
+                android:id="@+id/myTopic_recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-        </com.zhy.autolayout.AutoRelativeLayout>
+
+            <TextView
+                android:id="@+id/tvTopic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="25px"
+                android:text="热门圈子"
+                android:textColor="@color/black" />
 
 
-    </com.zhy.autolayout.AutoLinearLayout>
-</ScrollView>
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/topic_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+    </ScrollView>
+</com.liaoinstan.springview.widget.SpringView>
