@@ -1,87 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.zhy.autolayout.AutoLinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="450px"
-        android:orientation="vertical"
-        android:padding="10px">
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="4"
-            android:orientation="horizontal"
-            android:padding="15px">
-
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1.5">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-            </com.zhy.autolayout.AutoLinearLayout>
-
-
-            <com.zhy.autolayout.AutoLinearLayout
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0px"
-                    android:layout_weight="1"
-                    android:text="111" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0px"
-                    android:layout_weight="1"
-                    android:gravity="bottom"
-                    android:text="111" />
-            </com.zhy.autolayout.AutoLinearLayout>
-
-        </com.zhy.autolayout.AutoLinearLayout>
-
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0px"
-            android:layout_weight="1"
-            android:background="@color/colorT"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="666" />
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="666" />
-
-            <TextView
-                android:layout_width="0px"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="666" />
-        </com.zhy.autolayout.AutoLinearLayout>
-
-    </com.zhy.autolayout.AutoLinearLayout>
+    <include layout="@layout/details_title" />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/details_tablayout"
@@ -90,14 +15,55 @@
         android:padding="15px"
         app:tabGravity="fill"
         app:tabIndicatorColor="#f00"
-        app:tabSelectedTextColor="#f00">
-
-
-    </android.support.design.widget.TabLayout>
+        app:tabSelectedTextColor="#f00"
+        app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"></android.support.design.widget.TabLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
         android:padding="15px" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="#c9c9c9" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="100px"
+            android:layout_height="99px"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="50px"
+                android:layout_height="50px"
+                android:layout_marginLeft="40px"
+                android:src="@mipmap/collect" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="99px"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="200px"
+                android:layout_height="60px"
+                android:layout_marginRight="70px"
+                android:background="@mipmap/study"
+                android:gravity="center"
+                android:text="参与课程"
+                android:textColor="@color/transparent"
+                android:textSize="30px" />
+
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
 </com.zhy.autolayout.AutoLinearLayout>

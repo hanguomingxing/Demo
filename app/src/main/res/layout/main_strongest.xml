@@ -13,6 +13,7 @@
 
 
         <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/main_strongest_h"
             android:layout_width="0px"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -53,6 +54,7 @@
             android:paddingTop="10px">
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/main_strongest_hh"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"
@@ -90,6 +92,7 @@
             <include layout="@layout/line_view" />
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/main_strongest_hhh"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"

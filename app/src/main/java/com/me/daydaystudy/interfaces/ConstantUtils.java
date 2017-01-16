@@ -59,7 +59,14 @@ public interface ConstantUtils {
     long CLICKAPART = 3000;
     int SUCCESS = 1000;
     //首页，轮播...
-    String USER_MAIN="api.php?a=indexv9&c=index";
+    String USER_MAIN = "api.php?a=indexv9&c=index";
+    //轮播详情
+    String USER_DETAILS="api.php?c=activity&a=getActivityBak";
+    //小编详情
+    //http://www.meirixue.com/api.php?c=course&a=getCourseInfo&courseid=4592
+    String USER_XiaoBIAN="api.php?c=course&a=getCourseInfo";
+
+
     // 课程详情页评论
     String USER_COMMENT = "api.php?c=course&a=getCourseComment";
     // 我的课程，包括正在学和已学完
