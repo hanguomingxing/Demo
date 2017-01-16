@@ -9,6 +9,8 @@ public interface ConstantUtils {
 
     //基本URL
     String BASE_URL = "http://www.meirixue.com/";
+    //课程列表
+    String curriculumsTable = "api.php?c=list&a=index";
     //圈子里的话题
     String CircleTopicUrl = "api.php?c=circle&a=getCircleNamesIndexV2";
     //课程列表

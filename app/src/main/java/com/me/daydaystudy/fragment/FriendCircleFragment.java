@@ -33,11 +33,17 @@ public class FriendCircleFragment extends BaseFragment {
         tabLayout.setTabTextColors(0xFFFFFFFF, 0xFFFFFFFF);
         tabLayout.setSelectedTabIndicatorColor(0xFFFFFFFF);
         tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
+      /*  LinearLayout linearLayout = (LinearLayout) tabLayout.getChildAt(0);
+        linearLayout.setShowDividers(LinearLayout.SHOW_DIVIDER_MIDDLE);
+        linearLayout.setDividerPadding(25);
+        linearLayout.setDividerDrawable(ContextCompat.getDrawable(getActivity(),
+                R.drawable.layout_divider_vertical));*/
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         viewRoot = (ViewPager) inflater.inflate(R.layout.fragment_circle, null);
         viewRoot.setOffscreenPageLimit(2);
         viewRoot.setAdapter(new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {

@@ -39,9 +39,17 @@
             android:text="热门圈子"
             android:textColor="@color/black" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/topic_recyclerView"
+
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/topic_recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+
     </com.zhy.autolayout.AutoLinearLayout>
 </ScrollView>
