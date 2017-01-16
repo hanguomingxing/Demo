@@ -18,7 +18,6 @@ import com.me.daydaystudy.bean.SortBean;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
-import com.me.daydaystudy.utils.CommonUtils;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -44,8 +43,8 @@ public class CategoryFragment extends BaseFragment {
     private SortBean[] sortBean;
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
         HttpManger.getMethod(ConstantUtils.sort, new MyCallBack() {
 
 

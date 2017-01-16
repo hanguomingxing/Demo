@@ -1,6 +1,5 @@
 package com.me.daydaystudy.fragment;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -10,6 +9,7 @@ import com.google.gson.Gson;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.bean.HotTitleData;
+import com.me.daydaystudy.factory.HotChildFragmentFactory;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
@@ -41,9 +41,13 @@ public class HotFragment extends BaseFragment {
      * 请求网络
      */
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
+        initView();
+        requestData();
+    }
 
+    private void requestData() {
         HttpManger.getMethod(ConstantUtils.CircleHotTitleUrl, new MyCallBack() {
 
             @Override
@@ -53,7 +57,7 @@ public class HotFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response) {
-                initView();
+
                 HotTitleData hotTitleData = new Gson().fromJson(response, HotTitleData.class);
                 List<HotTitleData.DataBean> data = hotTitleData.getData();
                 if (data != null && data.size() > 0) {
@@ -66,7 +70,9 @@ public class HotFragment extends BaseFragment {
                 }
 
                 addViewPagerAndTabLayout();
-
+                if (inflate.getParent() == null) {
+                    requestShowNormalView(inflate);
+                }
             }
         });
     }
@@ -78,9 +84,9 @@ public class HotFragment extends BaseFragment {
         inflate = View.inflate(getActivity(), R.layout.hot_fragment_layout, null);
         hot_viewPager = (ViewPager) inflate.findViewById(R.id.hot_viewPager);
         hot_tabLayout = (MyTabLayout) inflate.findViewById(hot_TabLayout);
-
         hot_tabLayout.setupWithViewPager(hot_viewPager);
-        requestShowNormalView(inflate);
+
+
     }
 
     /**
@@ -91,11 +97,9 @@ public class HotFragment extends BaseFragment {
         hot_viewPager.setAdapter(new FragmentPagerAdapter(getChildFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
-                HotChildFragment hotChildFragment = new HotChildFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("titleTid", list.get(position).getTid());
-                hotChildFragment.setArguments(bundle);
-                return hotChildFragment;
+                //通过id找到对应的fragment
+                Fragment fragment = HotChildFragmentFactory.getHotChildFragmentInstance(list.get(position).getTid());
+                return fragment;
             }
 
             @Override
@@ -108,7 +112,6 @@ public class HotFragment extends BaseFragment {
                 return titleList.get(position);
             }
         });
-//        hot_tabLayout.setViewPager(hot_viewPager);
     }
 
 

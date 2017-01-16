@@ -46,6 +46,8 @@
         <activity android:name=".activity.MyMessageActivity" />
         <activity android:name=".activity.MyProjectActivity" />
         <activity android:name=".activity.ClassListActivity"></activity>
+        <activity android:name=".activity.DetailsActivity" />
+        <activity android:name=".activity.TopicActivity"></activity>
     </application>
 
 </manifest>

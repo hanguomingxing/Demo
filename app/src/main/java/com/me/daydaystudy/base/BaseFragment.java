@@ -29,35 +29,29 @@ public class BaseFragment extends Fragment {
     public static final int NO_LOGIN_VIEW = 3;
     public static final int EMPTY_VIEW = 4;
     public static final int ERROR_VIEW = 5;
-    private FrameLayout frameLayout;
+    protected FrameLayout frameLayout;
 
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         frameLayout = new FrameLayout(getActivity());
+        //显示默认的视图
+        requestChangeViewStatus(LOADING_VIEW);
+        init();
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //默认显示正在加载界面
-        requestChangeViewStatus(LOADING_VIEW);
         return frameLayout;
     }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //显示默认的视图
-        initData();
-    }
-
 
     /**
      * 加载数据
      */
-    protected void initData() {
+    protected void init() {
         if (NetUtils.isHaveNet()) {
             //设置正在加载
             requestChangeViewStatus(LOADING_VIEW);
@@ -136,7 +130,7 @@ public class BaseFragment extends Fragment {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initData();
+                init();
             }
         });
     }

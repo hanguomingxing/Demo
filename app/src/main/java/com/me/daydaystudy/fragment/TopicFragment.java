@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.liaoinstan.springview.container.DefaultHeader;
+import com.liaoinstan.springview.widget.SpringView;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.bean.TopicData;
@@ -33,7 +35,7 @@ import retrofit2.Call;
  * @date : 2017/1/11.
  */
 
-public class TopicFragment extends BaseFragment implements OnBannerClickListener {
+public class TopicFragment extends BaseFragment implements OnBannerClickListener, SpringView.OnFreshListener {
     private View inflate;
     private Banner banner;
     private ArrayList<String> list = new ArrayList<>();
@@ -44,13 +46,24 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
     private RecyclerView mytopic_recyclerView;
     private TextView tvTopic;
     private TextView tvMyTopic;
+    private SpringView springView;
 
     /**
      * 请求网络
      */
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
+        initView();
+        setHotCircleData();
+        requestTopicData();
+
+    }
+
+    /**
+     * 请求数据
+     */
+    private void requestTopicData() {
         HttpManger.getMethod(ConstantUtils.CircleTopicUrl, new MyCallBack() {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
@@ -59,13 +72,14 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
 
             @Override
             public void onResponse(String response) {
-                initView();
+
                 TopicData topicData = new Gson().fromJson(response, TopicData.class);
                 List<TopicData.DataBean.BannerBean> bannerList = topicData.getData().getBanner();
                 List<TopicData.DataBean.CircleBean> circle = topicData.getData().getCircle();
                 List<TopicData.DataBean.MycircleBean> mycircle = topicData.getData().getMycircle();
                 //轮播图数据
                 if (bannerList != null && bannerList.size() > 0) {
+                    list.clear();
                     for (int i = 0; i < bannerList.size(); i++) {
                         list.add(bannerList.get(i).getImg());
                     }
@@ -76,7 +90,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                     show(tvTopic, topic_recyclerView);
                     hotList.clear();
                     hotList.addAll(circle);
-                    setHotCircleData();
+                    topic_recyclerView.getAdapter().notifyDataSetChanged();
                 } else {
                     hide(tvTopic, topic_recyclerView);
                 }
@@ -88,12 +102,13 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                 } else {
                     hide(tvMyTopic, mytopic_recyclerView);
                 }
-
+                springView.onFinishFreshAndLoad();
+                if (inflate.getParent() == null)
+                    requestShowNormalView(inflate);
             }
 
 
         });
-
     }
 
     public void show(TextView textView, RecyclerView recyclerView) {
@@ -117,7 +132,11 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
         topic_recyclerView = (RecyclerView) inflate.findViewById(R.id.topic_recyclerView);
         tvMyTopic = (TextView) inflate.findViewById(R.id.tvMyTopic);
         mytopic_recyclerView = (RecyclerView) inflate.findViewById(R.id.myTopic_recyclerView);
-        requestShowNormalView(inflate);
+        springView = (SpringView) inflate.findViewById(R.id.springView);
+        springView.setHeader(new DefaultHeader(getActivity()));
+        springView.setType(SpringView.Type.FOLLOW);
+        springView.setListener(this);
+
     }
 
     /**
@@ -125,7 +144,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
      */
     private void setHotCircleData() {
 
-        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()){
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity()) {
             @Override
             public boolean canScrollVertically() {
                 return false;
@@ -176,5 +195,18 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
     @Override
     public void OnBannerClick(int position) {
         Toast.makeText(getActivity(), "老子跳了" + position, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 下拉刷新
+     */
+    @Override
+    public void onRefresh() {
+        requestTopicData();
+    }
+
+
+    @Override
+    public void onLoadmore() {
     }
 }

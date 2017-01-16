@@ -82,13 +82,13 @@ public class MainFragment extends BaseFragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initData();
+        init();
     }
 
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
         HttpManger.getMethod(ConstantUtils.USER_MAIN, new MyCallBack() {
 
 
