@@ -13,15 +13,6 @@ import com.bumptech.glide.module.GlideModule;
 
 import java.io.File;
 
-/**
- * Created by zhiyuan on 16/12/27.
- */
-
-
-
-/**
- * Created by zhiyuan on 16/12/27.
- */
 
 public class MyModule implements GlideModule {
     @Override

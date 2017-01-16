@@ -3,7 +3,6 @@ package com.me.daydaystudy.app;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
-import android.text.TextUtils;
 
 import org.xutils.x;
 

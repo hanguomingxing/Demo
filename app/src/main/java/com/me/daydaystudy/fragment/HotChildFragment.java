@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultFooter;
@@ -82,7 +81,7 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(getActivity(), "请求失败", Toast.LENGTH_SHORT).show();
+                requestChangeViewStatus(ERROR_VIEW  );
             }
 
             @Override
@@ -119,20 +118,8 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
         hot_child_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         hot_child_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
         floatingActionButton = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
-        ////设置recyclerView滑动监听
-        hot_child_recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                //通过判断滑动的长度让floatingActionButton显示隐藏
-                if (dy > 0) {
-                    floatingActionButton.hide();
-                }
-                if (dy < 0) {
-                    floatingActionButton.show();
-                }
-            }
-        });
+        floatingActionButton.attachToRecyclerView(hot_child_recyclerView);
+
     }
 
 
@@ -142,6 +129,7 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
     @Override
     public void onRefresh() {
         requestContentData(1);
+        hotSpringView.onFinishFreshAndLoad();
     }
 
     /**
@@ -150,5 +138,6 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
     @Override
     public void onLoadmore() {
         requestContentData(++page);
+        hotSpringView.onFinishFreshAndLoad();
     }
 }

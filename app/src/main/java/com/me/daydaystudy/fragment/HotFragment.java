@@ -34,7 +34,6 @@ public class HotFragment extends BaseFragment {
     private ViewPager hot_viewPager;
     private MyTabLayout hot_tabLayout;
     private ArrayList<HotTitleData.DataBean> list = new ArrayList<>();
-    private ArrayList<String> titleList = new ArrayList<>();
 
 
     /**
@@ -61,14 +60,9 @@ public class HotFragment extends BaseFragment {
                 HotTitleData hotTitleData = new Gson().fromJson(response, HotTitleData.class);
                 List<HotTitleData.DataBean> data = hotTitleData.getData();
                 if (data != null && data.size() > 0) {
-                    list.add(new HotTitleData.DataBean());
-                    titleList.add("推荐");
+                    list.add(new HotTitleData.DataBean("-1", "推荐"));
                     list.addAll(data);
-                    for (int i = 0; i < data.size(); i++) {
-                        titleList.add(data.get(i).getName());
-                    }
                 }
-
                 addViewPagerAndTabLayout();
                 if (inflate.getParent() == null) {
                     requestShowNormalView(inflate);
@@ -85,7 +79,6 @@ public class HotFragment extends BaseFragment {
         hot_viewPager = (ViewPager) inflate.findViewById(R.id.hot_viewPager);
         hot_tabLayout = (MyTabLayout) inflate.findViewById(hot_TabLayout);
         hot_tabLayout.setupWithViewPager(hot_viewPager);
-
 
     }
 
@@ -104,12 +97,12 @@ public class HotFragment extends BaseFragment {
 
             @Override
             public int getCount() {
-                return titleList.size();
+                return list.size();
             }
 
             @Override
             public CharSequence getPageTitle(int position) {
-                return titleList.get(position);
+                return list.get(position).getName();
             }
         });
     }

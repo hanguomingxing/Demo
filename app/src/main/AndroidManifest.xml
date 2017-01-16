@@ -35,7 +35,8 @@
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.AddFriendActivity" />
         <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.TopicActivity"></activity>
+        <activity android:name=".activity.TopicActivity" />
+        <activity android:name=".activity.WebViewActivity"></activity>
     </application>
 
 </manifest>
