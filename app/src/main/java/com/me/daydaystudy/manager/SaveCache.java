@@ -19,7 +19,7 @@ public class SaveCache {
      */
     public static String getCache(String url) {
         try {
-            DbUtilsBean first = DBUtils.getDb().selector(DbUtilsBean.class).where("EXPIRATION_TIME", "<", System.currentTimeMillis() + "").findFirst();
+            DbUtilsBean first = DBUtils.getDb().selector(DbUtilsBean.class).where("URL", "=", url).and("EXPIRATION_TIME", "<", System.currentTimeMillis() + "").findFirst();
             return first.getContent();
         } catch (DbException e) {
             e.printStackTrace();
@@ -33,14 +33,13 @@ public class SaveCache {
      *
      * @return
      */
-    public static void saveCache(String url, String content) {
+    public static void saveCache(String url, String content, long time) {
         try {
-            DBUtils.getDb().saveOrUpdate(new DbUtilsBean(url, content, System.currentTimeMillis()));
+            DBUtils.getDb().saveOrUpdate(new DbUtilsBean(url, content, System.currentTimeMillis() + time));
         } catch (DbException e) {
             e.printStackTrace();
         }
     }
-
 
 
 }
