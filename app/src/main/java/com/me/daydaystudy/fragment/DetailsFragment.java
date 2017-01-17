@@ -24,6 +24,12 @@ public class DetailsFragment extends BaseFragment {
     @Override
     protected void initData() {
         super.initData();
+/*
+
+        String cid0 = getArguments().getString("cid0");
+        Toast.makeText(getActivity(), "cidqqqqqqqqq", Toast.LENGTH_SHORT).show();
+*/
+
         Map<String, String> map = new HashMap<>();
 //        map.put("",);
         HttpManger.postMethod(ConstantUtils.USER_XiaoBIAN, map, new MyCallBack() {

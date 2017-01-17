@@ -59,7 +59,6 @@ public class DetailsActivity extends BaseActivity {
         setContentView(R.layout.activity_details);
         Intent intent = getIntent();
         cid = intent.getStringExtra("cid");
-        initView();
         initData();
 
     }
@@ -69,12 +68,11 @@ public class DetailsActivity extends BaseActivity {
         map.put("courseid", cid);
         HttpManger.postMethod(ConstantUtils.USER_XiaoBIAN, map, new MyCallBack() {
             @Override
-            public void onFailure(Call<String> call, Throwable t) {
-
-            }
+            public void onFailure(Call<String> call, Throwable t) {            }
 
             @Override
             public void onResponse(String response) {
+                initView();
                 initViewi();
                 Gson gson = new Gson();
                 detailsBean = gson.fromJson(response, DetailsBean.class);
@@ -140,9 +138,13 @@ public class DetailsActivity extends BaseActivity {
             @Override
             public Fragment getItem(int position) {
                 Fragment fragment = null;
+                Bundle bundle = null;
                 switch (position) {
                     case 0:
                         fragment = new DetailsFragment();
+                     /*   bundle = new Bundle();
+                        bundle.putString("cid0", databean.getCid());
+                        fragment.setArguments(bundle);*/
                         break;
                     case 1:
                         fragment = new DirectoryFragment();

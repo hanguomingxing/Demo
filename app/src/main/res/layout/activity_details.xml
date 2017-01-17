@@ -16,7 +16,7 @@
         app:tabGravity="fill"
         app:tabIndicatorColor="#f00"
         app:tabSelectedTextColor="#f00"
-        app:tabTextAppearance="@android:style/TextAppearance.Holo.Large"></android.support.design.widget.TabLayout>
+        app:tabTextAppearance="@android:style/TextAppearance.Holo.Large" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
@@ -24,6 +24,7 @@
         android:layout_height="0px"
         android:layout_weight="1"
         android:padding="15px" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="3px"
@@ -33,23 +34,18 @@
         android:layout_width="match_parent"
         android:layout_height="100px">
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="100px"
-            android:layout_height="99px"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="50px"
-                android:layout_height="50px"
-                android:layout_marginLeft="40px"
-                android:src="@mipmap/collect" />
-        </com.zhy.autolayout.AutoLinearLayout>
-
+        <ImageView
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:layout_gravity="center"
+            android:layout_marginLeft="40px"
+            android:src="@mipmap/collect" />
 
 
         <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="99px"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center">
 
             <TextView
