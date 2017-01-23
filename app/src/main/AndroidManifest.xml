@@ -34,7 +34,14 @@
         <activity android:name=".activity.DetailsActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.ForgetPasswordActivity"></activity>
+        <activity android:name=".activity.ForgetPasswordActivity" />
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.FeedBackActivity" />
+        <activity android:name=".activity.CollectionActivity" />
+        <activity android:name=".activity.DisCountActivity" />
+        <activity android:name=".activity.MyMessageActivity" />
+        <activity android:name=".activity.MyProjectActivity" />
+        <activity android:name=".activity.ClassListActivity"></activity>
     </application>
 
 </manifest>

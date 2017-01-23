@@ -12,6 +12,7 @@ import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
+import com.me.daydaystudy.utils.TitleHelp;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,14 +47,10 @@ public class RegisterActivity extends BaseActivity {
     }
 
     /**
-     * /**
      * 初始化title
      */
     private void initTitle() {
-        TextView titleView = (TextView) findViewById(R.id.title_text);
-        findViewById(R.id.title_back).setVisibility(View.VISIBLE);
-        titleView.setVisibility(View.VISIBLE);
-        titleView.setText("注册");
+        new TitleHelp(this).setCommonTitle("注册");
     }
 
     @OnClick({R.id.send_cede, R.id.but_submit})

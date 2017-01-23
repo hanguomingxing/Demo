@@ -1,5 +1,6 @@
 package com.me.daydaystudy;
 
+import android.Manifest;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.activity.MainActivity;
@@ -23,6 +25,12 @@ public class LaunchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+        requestPermission(0, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(LaunchActivity.this, "同意读取权限", Toast.LENGTH_SHORT).show();
+            }
+        });
         if (SharedPreferencesUtils.getBoolean("isNoFirstUse", false)) {
             secondUse();
         } else {

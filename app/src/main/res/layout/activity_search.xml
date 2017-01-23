@@ -1,13 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_search"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.me.daydaystudy.activity.SearchActivity">
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/red"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="65px"
+            android:layout_marginBottom="10px"
+            android:layout_marginLeft="16px"
+            android:layout_marginTop="10px"
+            android:layout_weight="1"
+            android:background="@drawable/search_hot_button_bg"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <ImageView
+                android:id="@+id/search_s"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="14px"
+                android:src="@drawable/search" />
+
+            <EditText
+                android:id="@+id/autotv_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center_vertical"
+                android:hint="搜索"
+                android:textColor="@color/gray"
+                android:textColorHint="#bbbaba"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/search_d"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:paddingRight="18px"
+                android:src="@drawable/cancel" />
+        </com.zhy.autolayout.AutoLinearLayout>
+
+        <TextView
+            android:id="@+id/tv_search_exit"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/setting_text_size" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <include
+        android:id="@+id/frame_loading"
+        layout="@layout/mrx_loading" />
+
+    <include
+        android:id="@+id/frame_search_hot"
+        layout="@layout/frame_search_hot" />
+
+    <include
+        android:id="@+id/frame_noresult"
+        layout="@layout/errorfragment_search_noresult" />
+
+    <com.zhy.autolayout.AutoFrameLayout
+        android:id="@+id/framelayout_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/linear_search_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_search_result_count"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="9dp"
+                android:text="共计8门相关课程"
+                android:textColor="#999999"
+                android:textSize="16sp" />
+
+            <com.zhy.autolayout.AutoFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/listview_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.zhy.autolayout.AutoFrameLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoFrameLayout>
+
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,5 +1,6 @@
 package com.me.daydaystudy.fragment;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.ClassListActivity;
+import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.bean.SortBean;
 import com.me.daydaystudy.interfaces.ConstantUtils;
@@ -43,7 +46,7 @@ public class CategoryFragment extends BaseFragment {
     protected void initData() {
         super.initData();
         HttpManger.getMethod(ConstantUtils.sort, new MyCallBack() {
-                    @Override
+            @Override
             public void onFailure(Call<String> call, Throwable t) {
                 requestChangeViewStatus(ERROR_VIEW);
             }
@@ -110,6 +113,7 @@ public class CategoryFragment extends BaseFragment {
             sortBean.getNodes().add(0, nodesBean);
         }
 
+        //设置分割线
         recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
             @Override
             public void getItemOffsets(Rect outRect, View view,
@@ -120,16 +124,29 @@ public class CategoryFragment extends BaseFragment {
 
             }
         });
+        //设置管理者
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3) {
             @Override
             public boolean canScrollVertically() {
                 return true;
             }
         });
+        //设置适配器
         recyclerView.setAdapter(new CommonAdapter<SortBean.NodesBean>(getActivity(), R.layout.category_item, sortBean.getNodes()) {
             @Override
-            protected void convert(ViewHolder holder, SortBean.NodesBean nodesBean, int position) {
-                ((TextView) holder.getView(R.id.category_tv)).setText(nodesBean.getCategory_name());
+            protected void convert(ViewHolder holder, final SortBean.NodesBean nodesBean, int position) {
+                //设置点击跳转
+                TextView category_tv = holder.getView(R.id.category_tv);
+                category_tv.setText(nodesBean.getCategory_name());
+                category_tv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //传送id
+                        Intent intent = new Intent(getActivity(), ClassListActivity.class);
+                        intent.putExtra("id", nodesBean.getId());
+                        getActivity().startActivity(intent);
+                    }
+                });
             }
 
         });

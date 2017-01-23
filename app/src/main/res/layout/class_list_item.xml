@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginRight="18px"
+    android:orientation="vertical">
+
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26px"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/home_recomm_iv_main"
+                android:layout_width="220px"
+                android:layout_height="170px"
+                android:layout_marginLeft="18px"
+                android:scaleType="fitXY"
+                android:src="@drawable/rrr" />
+
+            <TextView
+                android:id="@+id/home_recomm_tv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20px"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home_recomm_tv2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="#333333"
+                android:textSize="30px" />
+
+            <TextView
+
+                android:id="@+id/home_recomm_tv3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16px"
+                android:layout_weight="1"
+                android:text="麦子学院"
+                android:textColor="#999999"
+                android:textSize="24px" />
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom">
+
+                <TextView
+                    android:id="@+id/home_recomm_tv4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="免费"
+                    android:textSize="24px" />
+
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/home_recomm_iv_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/online" />
+
+                    <TextView
+                        android:id="@+id/home_recomm_tv5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10px"
+                        android:text="152人在学"
+                        android:textColor="#999999"
+                        android:textSize="22px" />
+                </com.zhy.autolayout.AutoLinearLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="26px"
+        android:background="#dddddd" />
+
+</com.zhy.autolayout.AutoLinearLayout>

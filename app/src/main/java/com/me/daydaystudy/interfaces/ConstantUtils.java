@@ -11,6 +11,8 @@ public interface ConstantUtils {
     String BASE_URL = "http://www.meirixue.com/";
     //圈子里的话题
     String CircleTopicUrl = "api.php?c=circle&a=getCircleNamesIndexV2";
+    //课程列表
+    String ClassListUrl = "http://www.meirixue.com/api.php?c=list&a=index";
     //圈子里的热门内容
     String CircleHotContentUrl = "api.php?c=circle&a=getCirclePostListByTid";
     //圈子里的热门标题
@@ -59,7 +61,7 @@ public interface ConstantUtils {
     long CLICKAPART = 3000;
     int SUCCESS = 1000;
     //首页，轮播...
-    String USER_MAIN="api.php?a=indexv9&c=index";
+    String USER_MAIN = "api.php?a=indexv9&c=index";
     // 课程详情页评论
     String USER_COMMENT = "api.php?c=course&a=getCourseComment";
     // 我的课程，包括正在学和已学完

@@ -33,13 +33,13 @@ public class BaseActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawableResource(R.color.common_background_color);
         //将自己添加到activity集合中
         MyApplication.addActivityList(this);
-        initData();
+        init();
     }
 
     /**
      * 初始化操作
      */
-    private void initData() {
+    private void init() {
         mContext = this;
     }
 

@@ -24,8 +24,38 @@
         <attr name="civ_border_overlay" format="boolean" />
         <attr name="civ_fill_color" format="color" />
     </declare-styleable>
-   <!--样式-->
+    <!--样式-->
     <style name="CheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
         <item name="android:button">@drawable/register_checked_btn</item>
     </style>
+
+    <!--设置中的textView的样式-->
+    <style name="setting_item_textview_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/setting_text_size</item>
+    </style>
+
+    <!-- togglebutton样式 -->
+    <style name="togglebtn_width_height">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@drawable/setting_checked_btn</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:checked">true</item>
+        <item name="android:textOff" />
+        <item name="android:textOn" />
+    </style>
+
+    <!-- setting中item的容器样式 -->
+    <style name="setting_item_container_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/setting_linear_height</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/setting_item_bg_selector</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingRight">@dimen/setting_linear_margin_horizontal</item>
+    </style>
+
 </resources>
