@@ -30,6 +30,11 @@ public class LaunchActivity extends BaseActivity {
             public void run() {
                 Toast.makeText(LaunchActivity.this, "同意读取权限", Toast.LENGTH_SHORT).show();
             }
+        }, new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(LaunchActivity.this, "拒绝读取权限", Toast.LENGTH_SHORT).show();
+            }
         });
         if (SharedPreferencesUtils.getBoolean("isNoFirstUse", false)) {
             secondUse();

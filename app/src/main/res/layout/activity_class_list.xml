@@ -16,11 +16,13 @@
         android:orientation="horizontal">
 
         <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/class_name"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <RadioButton
+                android:id="@+id/class_name_rb"
                 android:layout_width="wrap_content"
                 android:layout_height="88px"
                 android:layout_centerInParent="true"
@@ -32,11 +34,13 @@
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/class_free"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <RadioButton
+                android:id="@+id/class_free_rb"
                 android:layout_width="wrap_content"
                 android:layout_height="88px"
                 android:layout_centerInParent="true"
@@ -48,11 +52,13 @@
         </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/class_order"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
             <RadioButton
+                android:id="@+id/class_order_rb"
                 android:layout_width="wrap_content"
                 android:layout_height="88px"
                 android:layout_centerInParent="true"

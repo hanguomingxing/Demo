@@ -41,11 +41,14 @@ public class CategoryFragment extends BaseFragment {
     private int defaultSortRightIcon = R.drawable.down;
     private int defaultSortCenterTvColor = 0xFF333333;
     private Map<Integer, View> viewMap = new HashMap<>();
+    private SortBean[] sortBean;
 
     @Override
     protected void initData() {
         super.initData();
         HttpManger.getMethod(ConstantUtils.sort, new MyCallBack() {
+
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 requestChangeViewStatus(ERROR_VIEW);
@@ -53,7 +56,7 @@ public class CategoryFragment extends BaseFragment {
 
             @Override
             public void onResponse(String response) {
-                SortBean[] sortBean = new Gson().fromJson(response, SortBean[].class);
+                sortBean = new Gson().fromJson(response, SortBean[].class);
                 requestShowNormalView(initView(sortBean));
             }
         });
@@ -95,7 +98,7 @@ public class CategoryFragment extends BaseFragment {
      * @param position
      * @return
      */
-    private View getCategoryView(SortBean sortBean, int position) {
+    private View getCategoryView(final SortBean sortBean, int position) {
         View view = viewMap.get(position);
         if (view != null)
             return view;
@@ -143,6 +146,8 @@ public class CategoryFragment extends BaseFragment {
                     public void onClick(View v) {
                         //传送id
                         Intent intent = new Intent(getActivity(), ClassListActivity.class);
+                        intent.putExtra("data", CategoryFragment.this.sortBean);
+                        intent.putExtra("title", nodesBean.getCategory_name());
                         intent.putExtra("id", nodesBean.getId());
                         getActivity().startActivity(intent);
                     }
