@@ -13,15 +13,12 @@ import com.me.daydaystudy.factory.HotChildFragmentFactory;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
-import com.me.daydaystudy.utils.ToastUtil;
 import com.me.daydaystudy.view.MyTabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
-
-import static com.me.daydaystudy.R.id.hot_TabLayout;
 
 /**
  * @author : 张鸿鹏
@@ -51,7 +48,7 @@ public class HotFragment extends BaseFragment {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                ToastUtil.show(getActivity(), "请求失败");
+                requestChangeViewStatus(ERROR_VIEW);
             }
 
             @Override
@@ -77,7 +74,7 @@ public class HotFragment extends BaseFragment {
     private void initView() {
         inflate = View.inflate(getActivity(), R.layout.hot_fragment_layout, null);
         hot_viewPager = (ViewPager) inflate.findViewById(R.id.hot_viewPager);
-        hot_tabLayout = (MyTabLayout) inflate.findViewById(hot_TabLayout);
+        hot_tabLayout = (MyTabLayout) inflate.findViewById(R.id.hot_TabLayout);
         hot_tabLayout.setupWithViewPager(hot_viewPager);
 
     }

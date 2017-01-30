@@ -75,20 +75,7 @@
             android:id="@+id/type_llt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-           <!-- <TextView
-                android:id="@+id/hot_type"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
-                android:text="手作"
-                android:textColor="#F74D40" />
-            <TextView
-                android:id="@+id/hot_type2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20px"
-                android:text="手作"
-                android:textColor="#F74D40" />-->
+
         </com.zhy.autolayout.AutoLinearLayout>
 
     </com.zhy.autolayout.AutoLinearLayout>

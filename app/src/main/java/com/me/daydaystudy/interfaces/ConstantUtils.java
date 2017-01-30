@@ -15,6 +15,10 @@ public interface ConstantUtils {
     String CircleTopicUrl = "api.php?c=circle&a=getCircleNamesIndexV2";
     //课程列表
     String ClassListUrl = "http://www.meirixue.com/api.php?c=list&a=index";
+    //圈子点击内上方接口
+    String CircleTopicTopUrl= "api.php?c=circle&a=getCircleNameInfo";
+    //圈子点击下方接口
+    String CircleTopicButtomUrl= "api.php?c=circle&a=getCirclePostList";
     //圈子里的热门内容
     String CircleHotContentUrl = "api.php?c=circle&a=getCirclePostListByTid";
     //圈子里的热门标题

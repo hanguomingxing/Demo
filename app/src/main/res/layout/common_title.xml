@@ -78,7 +78,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            />
+            app:tabGravity="center"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/white"
+            app:tabTextColor="@color/white" />
 
     </com.zhy.autolayout.AutoRelativeLayout>
 
