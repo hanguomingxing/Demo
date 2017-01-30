@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_my_project"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <RadioGroup
+        android:id="@+id/learn_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="120px"
+            android:layout_weight="1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="正在学"
+            android:textColor="#f00" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="120px"
+            android:layout_weight="1"
+            android:background="#F1F1F1"
+            android:button="@null"
+            android:gravity="center"
+            android:text="已学完" />
+
+    </RadioGroup>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/learn_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -64,13 +64,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.title_back).setVisibility(View.VISIBLE);
         titleView.setVisibility(View.VISIBLE);
         titleView.setText("登陆");
-}
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //注册界面
             case R.id.register:
                 jumpActivity(RegisterActivity.class);
+                break;
+            //忘记密码
+            case R.id.forget_pwd:
+                jumpActivity(ForgetPasswordActivity.class);
                 break;
             case R.id.but_login:
                 HashMap<String, String> map = new HashMap<>();
@@ -98,10 +103,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     }
                 });
-                break;
-            //忘记密码
-            case R.id.forget_pwd:
-                jumpActivity(ForgetPasswordActivity.class);
                 break;
         }
 

@@ -62,8 +62,14 @@ public class HttpManger {
 
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                SaveCache.saveCache(url, response.body(), time);
-                callback.onResponse(response.body());
+                if (response == null)
+                    throw new RuntimeException("response 为空" + response);
+                if (response.body() != null) {
+                    SaveCache.saveCache(url, response.body(), time);
+                    callback.onResponse(response.body());
+                } else {
+                    callback.onFailure(call, new RuntimeException("数据出错，body为空" + response));
+                }
             }
 
             @Override

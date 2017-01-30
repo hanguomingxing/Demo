@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -13,9 +14,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data
-            android:name="com.me.daydaystudy.utils.MyModule"
-            android:value="GlideModule" />
+
         <!-- 屏幕宽度与高度 -->
         <meta-data
             android:name="design_width"
@@ -40,6 +39,13 @@
         <activity android:name=".activity.ForgetPasswordActivity"></activity>
         <activity android:name=".activity.TopicActivity" />
         <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.FeedBackActivity" />
+        <activity android:name=".activity.CollectionActivity" />
+        <activity android:name=".activity.DisCountActivity" />
+        <activity android:name=".activity.MyMessageActivity" />
+        <activity android:name=".activity.MyProjectActivity" />
+        <activity android:name=".activity.ClassListActivity"></activity>
     </application>
 
 </manifest>
