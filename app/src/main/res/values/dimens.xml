@@ -17,7 +17,7 @@
     <dimen name="about_title_margin">30dp</dimen>
     <dimen name="course_detail_pic_width">190dp</dimen>
     <dimen name="course_detail_pic_height">115dp</dimen>
-    <dimen name="quan_tablayout_tv">50dp</dimen>
+    <dimen name="quan_tablayout_tv">22px</dimen>
     <dimen name="mine_pic_size">50px</dimen>
     <dimen name="mine_text_size">40px</dimen>
     <dimen name="mine_list_padding">11px</dimen>

@@ -1,5 +1,6 @@
 package com.me.daydaystudy.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.TopicActivity;
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.bean.TopicData;
 import com.me.daydaystudy.interfaces.ConstantUtils;
@@ -64,6 +66,8 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
      * 请求数据
      */
     private void requestTopicData() {
+
+
         HttpManger.getMethod(ConstantUtils.CircleTopicUrl, new MyCallBack() {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
@@ -155,7 +159,17 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
         topic_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), RecyclerView.VERTICAL));
         commonAdapter = new CommonAdapter<TopicData.DataBean.CircleBean>(getActivity(), R.layout.hotcircle_recycleritem_layout, hotList) {
             @Override
-            protected void convert(final ViewHolder holder, TopicData.DataBean.CircleBean circleBean, final int position) {
+            protected void convert(final ViewHolder holder, final TopicData.DataBean.CircleBean circleBean, final int position) {
+                holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getActivity(), TopicActivity.class);
+                        intent.putExtra("nid",circleBean.getNid());
+                        intent.putExtra("title",circleBean.getN_title());
+                        startActivity(intent);
+                    }
+                });
+
                 holder.setText(R.id.topic_Title, circleBean.getN_title());
                 holder.setText(R.id.topic_Brief, circleBean.getN_brief());
                 holder.setText(R.id.topic_userCount, circleBean.getN_user_count() + "人关注");

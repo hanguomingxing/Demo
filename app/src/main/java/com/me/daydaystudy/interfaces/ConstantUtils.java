@@ -13,6 +13,10 @@ public interface ConstantUtils {
     String curriculumsTable = "api.php?c=list&a=index";
     //圈子里的话题
     String CircleTopicUrl = "api.php?c=circle&a=getCircleNamesIndexV2";
+    //圈子点击内上方接口
+    String CircleTopicTopUrl= "api.php?c=circle&a=getCircleNameInfo";
+    //圈子点击下方接口
+    String CircleTopicButtomUrl= "api.php?c=circle&a=getCirclePostList";
     //圈子里的热门内容
     String CircleHotContentUrl = "api.php?c=circle&a=getCirclePostListByTid";
     //圈子里的热门标题

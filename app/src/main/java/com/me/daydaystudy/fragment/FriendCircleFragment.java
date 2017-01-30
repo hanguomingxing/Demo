@@ -1,6 +1,5 @@
 package com.me.daydaystudy.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -26,19 +25,17 @@ public class FriendCircleFragment extends BaseFragment {
     private TabLayout tabLayout;
     private ViewPager viewRoot;
 
-    @Override
+    /*@Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        tabLayout = ((MainActivity) getActivity()).getTabLayout();
-        tabLayout.setTabTextColors(0xFFFFFFFF, 0xFFFFFFFF);
-        tabLayout.setSelectedTabIndicatorColor(0xFFFFFFFF);
-        tabLayout.setTabGravity(TabLayout.GRAVITY_CENTER);
 
-    }
+
+    }*/
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        tabLayout = ((MainActivity) getActivity()).getTabLayout();
 
         viewRoot = (ViewPager) inflater.inflate(R.layout.fragment_circle, null);
         viewRoot.setOffscreenPageLimit(2);

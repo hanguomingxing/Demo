@@ -1,7 +1,6 @@
 package com.me.daydaystudy.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.Spanned;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
-import com.me.daydaystudy.activity.WebViewActivity;
 import com.me.daydaystudy.bean.HotContentData;
 import com.me.daydaystudy.bean.SpannedBean;
 import com.me.daydaystudy.view.ShowDialog;
@@ -30,7 +28,7 @@ import java.util.List;
  * @date : 2017/1/16.
  */
 
-public class TopicAdapter extends CommonAdapter<HotContentData.DataBean>  {
+public class HotContentAdapter extends CommonAdapter<HotContentData.DataBean> {
 
     private final Context context;
     private final int layoutId;
@@ -41,7 +39,7 @@ public class TopicAdapter extends CommonAdapter<HotContentData.DataBean>  {
     private LinearLayout.LayoutParams layoutParams;
     private AutoLinearLayout type_llt;
 
-    public TopicAdapter(Context context, int layoutId, List<HotContentData.DataBean> datas) {
+    public HotContentAdapter(Context context, int layoutId, List<HotContentData.DataBean> datas) {
         super(context, layoutId, datas);
         this.context = context;
         this.layoutId = layoutId;
@@ -51,12 +49,11 @@ public class TopicAdapter extends CommonAdapter<HotContentData.DataBean>  {
 
     @Override
     protected void convert(ViewHolder holder, final HotContentData.DataBean dataBean, int position) {
+        //跳转
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, WebViewActivity.class);
-                intent.putExtra("content", dataBean.getP_content());
-                context.startActivity(intent);
+
             }
         });
 
@@ -94,24 +91,30 @@ public class TopicAdapter extends CommonAdapter<HotContentData.DataBean>  {
         holder.setText(R.id.hot_messageCount, dataBean.getP_replycount());
         //类型标签
         type_llt = holder.getView(R.id.type_llt);
-        Spanned spanned = Html.fromHtml(dataBean.getP_tids());
-        final SpannedBean[] spannedBean = new Gson().fromJson(spanned.toString(), SpannedBean[].class);
-        type_llt.removeAllViews();
-        for (int i = 0; i < spannedBean.length; i++) {
-            textView = new TextView(context);
-            textView.setText("#" + spannedBean[i].getTname() + "#");
-            textView.setTextColor(Color.parseColor("#F74D40"));
-            final int finalI = i;
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                   Toast.makeText(context, spannedBean[finalI].getTname()+"———"+ finalI, Toast.LENGTH_SHORT).show();
-                }
-            });
-            layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(10, 0, 10, 0);
+        if (!TextUtils.isEmpty(dataBean.getP_tids())) {
+            Spanned spanned = Html.fromHtml(dataBean.getP_tids());
+            final SpannedBean[] spannedBean = new Gson().fromJson(spanned.toString(), SpannedBean[].class);
+            type_llt.removeAllViews();
+
+            for (int i = 0; i < spannedBean.length; i++) {
+                textView = new TextView(context);
+                textView.setText("#" + spannedBean[i].getTname() + "#");
+                textView.setTextColor(Color.parseColor("#F74D40"));
+                final int finalI = i;
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(context, spannedBean[finalI].getTname() + "———" + finalI, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.setMargins(10, 0, 10, 0);
+            }
+            if (textView != null) {
+                type_llt.addView(textView, layoutParams);
+            }
         }
-        type_llt.addView(textView, layoutParams);
+
         ImageView hot_first_iv = holder.getView(R.id.hot_first_iv);
         ImageView hot_two_iv1 = holder.getView(R.id.hot_two_iv1);
         ImageView hot_two_iv2 = holder.getView(R.id.hot_two_iv2);

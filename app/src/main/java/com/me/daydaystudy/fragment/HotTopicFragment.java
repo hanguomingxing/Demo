@@ -1,6 +1,5 @@
 package com.me.daydaystudy.fragment;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -26,23 +25,23 @@ import java.util.Map;
 
 import retrofit2.Call;
 
+
 /**
  * @author : 张鸿鹏
- * @date : 2017/1/12.
- * 热门的十一个fragment
+ * @date : 2017/1/17.
  */
 
-public class HotChildFragment extends BaseFragment implements SpringView.OnFreshListener {
+public class HotTopicFragment extends BaseFragment implements SpringView.OnFreshListener {
 
     private int page = 0;
+
     ArrayList<HotContentData.DataBean> contentList = new ArrayList<>();
     private RecyclerView hot_child_recyclerView;
     private FloatingActionButton floatingActionButton;
     private SpringView hotSpringView;
-    private String titleTid;
     private Map<String, String> map;
     private HotContentAdapter hotContentAdapter;
-    private View view;
+    private View inflate;
 
     @Override
     protected void init() {
@@ -55,29 +54,15 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
     }
 
     /**
-     * 获取该对象的实例
-     *
-     * @param titleTid
-     * @return
-     */
-    public static HotChildFragment getHotChildFragmentInstance(String titleTid) {
-        HotChildFragment hotChildFragment = new HotChildFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("titleTid", titleTid);
-        hotChildFragment.setArguments(bundle);
-        return hotChildFragment;
-    }
-
-
-    /**
      * 请求数据
      */
     private void requestContentData(final int page) {
-        titleTid = getArguments().getString("titleTid");
+
         map = new HashMap<>();
-        map.put("tid", titleTid);
+        map.put("nid", getArguments().getString("nid"));
+        map.put("order",getArguments().getString("order"));
         map.put("page", page + "");
-        HttpManger.postMethod(ConstantUtils.CircleHotContentUrl, map, new MyCallBack() {
+        HttpManger.postMethod(ConstantUtils.CircleTopicButtomUrl, map, new MyCallBack() {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
@@ -96,8 +81,8 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
                     contentList.addAll(data);
                 }
                 hotContentAdapter.notifyDataSetChanged();
-                if (view.getParent() == null) {
-                    requestShowNormalView(view);
+                if (inflate.getParent() == null) {
+                    requestShowNormalView(inflate);
                 }
             }
         });
@@ -108,20 +93,18 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
      * 初始化控件
      */
     private void initView() {
-        view = View.inflate(getActivity(), R.layout.hot_child_fragmnet, null);
-        hotSpringView = (SpringView) view.findViewById(R.id.hotSpringView);
+        inflate = View.inflate(getActivity(), R.layout.hot_child_fragmnet, null);
+        hotSpringView = (SpringView) inflate.findViewById(R.id.hotSpringView);
         hotSpringView.setType(SpringView.Type.FOLLOW);
         hotSpringView.setHeader(new DefaultHeader(getActivity()));
         hotSpringView.setFooter(new DefaultFooter(getActivity()));
         hotSpringView.setListener(this);
-        hot_child_recyclerView = (RecyclerView) view.findViewById(R.id.hot_Child_RecyclerView);
+        hot_child_recyclerView = (RecyclerView) inflate.findViewById(R.id.hot_Child_RecyclerView);
         hot_child_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         hot_child_recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
-        floatingActionButton = (FloatingActionButton) view.findViewById(R.id.floatingActionButton);
+        floatingActionButton = (FloatingActionButton) inflate.findViewById(R.id.floatingActionButton);
         floatingActionButton.attachToRecyclerView(hot_child_recyclerView);
-
     }
-
 
     /**
      * 刷新数据
