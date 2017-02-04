@@ -40,6 +40,7 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -170,10 +171,10 @@ public class ClassListActivity extends BaseActivity {
     private void initData() {
         id = getIntent().getStringExtra("id");
         classNameRb.setText(getIntent().getStringExtra("title"));
-        SortBean[] datas = (SortBean[]) getIntent().getSerializableExtra("data");
+        Object[] datas = (Object[]) getIntent().getSerializableExtra("data");
         sortBean = new ArrayList<>();
         for (int i = 1; i < datas.length; i++) {
-            sortBean.add(datas[i]);
+            sortBean.add((SortBean) datas[i]);
         }
         SortBean sortBean = new SortBean();
         sortBean.setCname("其他课程");
