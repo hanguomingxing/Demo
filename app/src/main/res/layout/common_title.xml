@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--所有标题的title-->
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/common_title"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/commont_title"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/red">
