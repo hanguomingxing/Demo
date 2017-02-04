@@ -90,9 +90,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     @Override
                     public void onResponse(String response) {
-                        LoginBean loginBean = new Gson().fromJson(response, LoginBean.class);
+                        presentation.setText("");
+                        final LoginBean loginBean = new Gson().fromJson(response, LoginBean.class);
                         switch (loginBean.getStatus()) {
                             case 200:           //登陆成功
+                                System.out.println(response);
                                 finish();
                                 break;
                             case 201:           //密码错误

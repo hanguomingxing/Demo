@@ -71,9 +71,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="请输入正确的手机号码"
-            android:textColor="@color/red"
-            android:visibility="invisible" />
+            android:paddingLeft="20px"
+            android:text=""
+            android:textColor="@color/red" />
 
         <TextView
             android:id="@+id/forget_pwd"

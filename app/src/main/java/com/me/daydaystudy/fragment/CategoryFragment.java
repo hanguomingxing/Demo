@@ -147,7 +147,7 @@ public class CategoryFragment extends BaseFragment {
                         //传送id
                         Intent intent = new Intent(getActivity(), ClassListActivity.class);
                         intent.putExtra("data", CategoryFragment.this.sortBean);
-                        intent.putExtra("title", nodesBean.getCategory_name());
+                        intent.putExtra("title", nodesBean.getCategory_name()   );
                         intent.putExtra("id", nodesBean.getId());
                         getActivity().startActivity(intent);
                     }
