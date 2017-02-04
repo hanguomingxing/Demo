@@ -1,5 +1,7 @@
 package com.me.daydaystudy.fragment;
 
+import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -9,6 +11,7 @@ import com.liaoinstan.springview.container.DefaultFooter;
 import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.TopicActivity;
 import com.me.daydaystudy.adapter.HotContentAdapter;
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.bean.HotContentData;
@@ -31,7 +34,7 @@ import retrofit2.Call;
  * @date : 2017/1/17.
  */
 
-public class HotTopicFragment extends BaseFragment implements SpringView.OnFreshListener {
+public class HotTopicFragment extends BaseFragment implements SpringView.OnFreshListener, AppBarLayout.OnOffsetChangedListener {
 
     private int page = 0;
 
@@ -60,7 +63,7 @@ public class HotTopicFragment extends BaseFragment implements SpringView.OnFresh
 
         map = new HashMap<>();
         map.put("nid", getArguments().getString("nid"));
-        map.put("order",getArguments().getString("order"));
+        map.put("order", getArguments().getString("order"));
         map.put("page", page + "");
         HttpManger.postMethod(ConstantUtils.CircleTopicButtomUrl, map, new MyCallBack() {
 
@@ -122,5 +125,48 @@ public class HotTopicFragment extends BaseFragment implements SpringView.OnFresh
     public void onLoadmore() {
         requestContentData(++page);
         hotSpringView.onFinishFreshAndLoad();
+    }
+
+    @Override
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        hotSpringView.setEnable(verticalOffset == 0);
+    }
+
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
+        /**
+         * 这段代码是为了解决springview 和tabBarLayout中嵌套时上下滚动冲突
+         */
+        if (isVisibleToUser && this.getContext() != null) {
+            TopicActivity fragmentActivity = (TopicActivity) getActivity();
+            if (fragmentActivity.appBar != null) {
+                fragmentActivity.appBar.addOnOffsetChangedListener(this);
+            }
+        } else if (isVisibleToUser && this.getContext() == null) {
+            //iewpager中第一页加载的太早,getContext还拿不到,做个延迟
+            new Handler().post(new Runnable() {
+
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (HotTopicFragment.this.getContext() != null) {
+
+                        // MyApplication application = (MyApplication) TopicParticularsFragment.this.getContext().getApplicationContext();
+
+                        TopicActivity fragmentActivity = (TopicActivity) getActivity();
+                        if (fragmentActivity.appBar != null) {
+                            fragmentActivity.appBar.addOnOffsetChangedListener(HotTopicFragment.this);
+                        }
+                    }
+                }
+            });
+        }
     }
 }

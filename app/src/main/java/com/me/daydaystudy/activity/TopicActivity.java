@@ -1,6 +1,7 @@
 package com.me.daydaystudy.activity;
 
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -55,6 +56,7 @@ public class TopicActivity extends BaseActivity {
     private String[] Type = {"最新", "最热"};
     private String nid;
     private int order=1;
+    public AppBarLayout appBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,4 +168,7 @@ public class TopicActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
+
+
+
 }
