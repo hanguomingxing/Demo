@@ -86,15 +86,23 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
      */
     private void initLoginEd() {
         if (MyApplication.isLoginEd()) {        //已登录
+            login.setVisibility(View.GONE);
             loginEd.setVisibility(View.VISIBLE);
             loginEd.setOnClickListener(this);
         } else {        //未登录
             login.setVisibility(View.VISIBLE);
+            loginEd.setVisibility(View.GONE);
             login.setOnClickListener(this);
             btnLand.setOnClickListener(this);
         }
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        initLoginEd();
+    }
 
     @Override
     public void onDestroyView() {
