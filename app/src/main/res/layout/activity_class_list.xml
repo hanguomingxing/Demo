@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_class_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.me.daydaystudy.activity.ClassListActivity">
+
+    <include layout="@layout/common_title" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="horizontal">
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/class_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/class_name_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="88px"
+                android:layout_centerInParent="true"
+                android:button="@null"
+                android:divider="@drawable/sort_shape_divider_linear"
+                android:drawableRight="@drawable/class_list_down_select"
+                android:text="多彩生活"
+                android:textColor="@drawable/collection_text_color" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/class_free"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/class_free_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="88px"
+                android:layout_centerInParent="true"
+                android:button="@null"
+                android:divider="@drawable/sort_shape_divider_linear"
+                android:drawableRight="@drawable/class_list_down_select"
+                android:text="筛选"
+                android:textColor="@drawable/collection_text_color" />
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:id="@+id/class_order"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <RadioButton
+                android:id="@+id/class_order_rb"
+                android:layout_width="wrap_content"
+                android:layout_height="88px"
+                android:layout_centerInParent="true"
+                android:button="@null"
+                android:divider="@drawable/sort_shape_divider_linear"
+                android:drawableRight="@drawable/class_list_down_select"
+                android:text="排序"
+                android:textColor="@drawable/collection_text_color" />
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/class_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</com.zhy.autolayout.AutoLinearLayout>

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_height="wrap_content"
+    android:background="#fff"
     android:orientation="vertical">
+    <!--分割线-->
+    <View
+        android:id="@+id/xian"
+        android:layout_width="match_parent"
+        android:layout_height="20px"
+        android:background="#EEEEEE" />
     <!--用户头像及关注-->
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
@@ -11,12 +17,14 @@
         android:orientation="horizontal"
         android:padding="15px">
 
-        <ImageView
+        <com.me.daydaystudy.view.CircleImageView
             android:id="@+id/hot_userIcon"
             android:layout_width="100px"
-            android:layout_height="100px" />
+            android:layout_height="100px"
+            android:layout_marginLeft="20px" />
 
         <TextView
+            android:paddingLeft="15px"
             android:id="@+id/hot_userName"
             android:layout_width="0px"
             android:layout_height="wrap_content"
@@ -25,11 +33,12 @@
             android:text="用户名称"
             android:textColor="@color/black" />
 
-        <ImageView
+        <CheckBox
             android:layout_width="100px"
             android:layout_height="50px"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/attention_selector" />
+            android:background="@drawable/attention_selector"
+            android:button="@null" />
     </com.zhy.autolayout.AutoLinearLayout>
     <!--图片展示类型-->
     <include layout="@layout/hot_image_item" />
@@ -62,20 +71,21 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20px"
             android:src="@drawable/topic_label" />
-
-        <TextView
-            android:id="@+id/hot_type"
+        <com.zhy.autolayout.AutoLinearLayout
+            android:id="@+id/type_llt"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20px"
-            android:text="手作"
-            android:textColor="@color/black" />
+            android:layout_height="wrap_content">
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
     </com.zhy.autolayout.AutoLinearLayout>
-    <!--编辑-->
-    <include
-        layout="@layout/hot_editor_item"
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="1px"
+        android:background="#EEEEEEEE" />
+    <!--编辑-->
+    <include layout="@layout/hot_editor_item" />
 
 
 </com.zhy.autolayout.AutoLinearLayout>

@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.app.MyApplication;
 import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.bean.LoginBean;
 import com.me.daydaystudy.interfaces.ConstantUtils;
@@ -64,13 +65,18 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         findViewById(R.id.title_back).setVisibility(View.VISIBLE);
         titleView.setVisibility(View.VISIBLE);
         titleView.setText("登陆");
-}
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            //注册界面
             case R.id.register:
                 jumpActivity(RegisterActivity.class);
+                break;
+            //忘记密码
+            case R.id.forget_pwd:
+                jumpActivity(ForgetPasswordActivity.class);
                 break;
             case R.id.but_login:
                 HashMap<String, String> map = new HashMap<>();
@@ -85,9 +91,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     @Override
                     public void onResponse(String response) {
-                        LoginBean loginBean = new Gson().fromJson(response, LoginBean.class);
+                        presentation.setText("");
+                        final LoginBean loginBean = new Gson().fromJson(response, LoginBean.class);
                         switch (loginBean.getStatus()) {
                             case 200:           //登陆成功
+                                MyApplication.setIsLoginEd(true);
                                 finish();
                                 break;
                             case 201:           //密码错误
@@ -98,10 +106,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
                     }
                 });
-                break;
-            //忘记密码
-            case R.id.forget_pwd:
-                jumpActivity(ForgetPasswordActivity.class);
                 break;
         }
 

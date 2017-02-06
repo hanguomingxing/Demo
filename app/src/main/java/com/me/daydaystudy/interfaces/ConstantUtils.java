@@ -9,8 +9,17 @@ public interface ConstantUtils {
 
     //基本URL
     String BASE_URL = "http://www.meirixue.com/";
+    //课程列表
+    String curriculumsTable = "api.php?c=list&a=index";
     //圈子里的话题
     String CircleTopicUrl = "api.php?c=circle&a=getCircleNamesIndexV2";
+    //课程列表
+    String ClassListUrl = "http://www.meirixue.com/api.php?c=list&a=index";
+    String ClassListTitleUrl = "http://www.meirixue.com/api.php?c=category&a=getTree";
+    //圈子点击内上方接口
+    String CircleTopicTopUrl= "api.php?c=circle&a=getCircleNameInfo";
+    //圈子点击下方接口
+    String CircleTopicButtomUrl= "api.php?c=circle&a=getCirclePostList";
     //圈子里的热门内容
     String CircleHotContentUrl = "api.php?c=circle&a=getCirclePostListByTid";
     //圈子里的热门标题
@@ -69,6 +78,7 @@ public interface ConstantUtils {
     String USER_XQ="api.php?c=course&a=getCourseDesc";
 //    http://www.meirixue.com/api.php?c=course&a=getCourseStep
 
+    String USER_MAIN = "api.php?a=indexv9&c=index";
     // 课程详情页评论
     String USER_COMMENT = "api.php?c=course&a=getCourseComment";
     // 我的课程，包括正在学和已学完

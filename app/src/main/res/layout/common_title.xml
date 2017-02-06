@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--所有标题的title-->
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/commont_title"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/common_title"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/red">
@@ -76,7 +77,13 @@
             android:id="@+id/title_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            app:tabGravity="center"
+            app:tabIndicatorColor="@color/white"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="@color/white"
+            app:tabTextAppearance="@style/TabLayoutTextStyle"
+            app:tabTextColor="@color/white" />
 
     </com.zhy.autolayout.AutoRelativeLayout>
 
@@ -131,6 +138,23 @@
             android:paddingRight="20px"
             android:visibility="gone" />
 
+        <com.me.daydaystudy.view.CollectView
+            android:id="@+id/collectView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/collect_selector"
+            android:button="@null"
+            android:paddingRight="20px"
+            android:visibility="gone" />
+
+        <com.me.daydaystudy.view.SettingView
+            android:id="@+id/settingView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:paddingRight="20px"
+            android:visibility="gone" />
     </com.zhy.autolayout.AutoLinearLayout>
 
 </com.zhy.autolayout.AutoLinearLayout>

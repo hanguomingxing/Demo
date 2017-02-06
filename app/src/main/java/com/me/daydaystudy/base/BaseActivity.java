@@ -33,13 +33,13 @@ public class BaseActivity extends AppCompatActivity {
         getWindow().setBackgroundDrawableResource(R.color.common_background_color);
         //将自己添加到activity集合中
         MyApplication.addActivityList(this);
-        initData();
+        init();
     }
 
     /**
      * 初始化操作
      */
-    private void initData() {
+    private void init() {
         mContext = this;
     }
 
@@ -84,7 +84,8 @@ public class BaseActivity extends AppCompatActivity {
             //判断是否应该申请
             if (prepareRequestPermission.size() == 0) {
                 //全部授权，执行动作
-                successRunnable.run();
+                if (successRunnable != null)
+                    successRunnable.run();
             } else {
                 //有未申请的权限，进行申请
                 //数组转化
@@ -95,7 +96,8 @@ public class BaseActivity extends AppCompatActivity {
             }
         } else {
             //无需授权，执行动作
-            successRunnable.run();
+            if (successRunnable != null)
+                successRunnable.run();
         }
     }
 
@@ -134,16 +136,22 @@ public class BaseActivity extends AppCompatActivity {
      * @param permissionCode
      */
     private void runRequest(Integer permissionCode) {
-        permissionMap.get(permissionCode).getSuccessRunable().run();
-        permissionMap.remove(permissionCode);
+        if (permissionMap.get(permissionCode) != null) {
+            if (permissionMap.get(permissionCode).getSuccessRunable() != null)
+                permissionMap.get(permissionCode).getSuccessRunable().run();
+            permissionMap.remove(permissionCode);
+        }
     }
 
     /**
      * 拒绝请求
      */
     private void deniedRequest(Integer permissionCode) {
-        permissionMap.get(permissionCode).getFailRunable().run();
-        permissionMap.remove(permissionCode);
+        if (permissionMap.get(permissionCode) != null) {
+            if (permissionMap.get(permissionCode).getFailRunable() != null)
+                permissionMap.get(permissionCode).getFailRunable().run();
+            permissionMap.remove(permissionCode);
+        }
     }
 
     /**

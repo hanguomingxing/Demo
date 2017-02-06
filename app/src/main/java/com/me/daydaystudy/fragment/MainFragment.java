@@ -79,10 +79,16 @@ public class MainFragment extends BaseFragment {
     private List<MainBean.DataBean.IndexothersBean> indexothersBeen;
     private RecyclerView main_learn_rv;
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        init();
+    }
+
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
         HttpManger.getMethod(ConstantUtils.USER_MAIN, new MyCallBack() {
 
 

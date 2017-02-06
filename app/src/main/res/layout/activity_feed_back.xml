@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_title" />
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20px"
+        android:layout_marginRight="20px"
+        android:layout_marginTop="50px"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/my_feedback_edittext_content"
+            android:layout_width="match_parent"
+            android:layout_height="450px"
+            android:background="@drawable/feedback"
+            android:gravity="top"
+            android:hint="最多输入400字"
+            android:inputType="textMultiLine"
+            android:padding="20px"
+            android:textColorHint="#cbcbcb"
+            android:textSize="36px" />
+
+        <EditText
+            android:id="@+id/my_feedback_edittext_phone"
+            android:layout_width="match_parent"
+            android:layout_height="100px"
+            android:layout_marginTop="35px"
+            android:background="@drawable/edit_name_1"
+            android:hint="请输入邮箱/手机号/qq号"
+            android:padding="20px"
+            android:textColor="#333333"
+            android:textColorHint="#cbcbcb"
+            android:textSize="36px" />
+
+        <Button
+            android:id="@+id/my_feedback_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45px"
+            android:background="@drawable/logobutton"
+            android:gravity="center"
+            android:text="提交"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+    </com.zhy.autolayout.AutoLinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

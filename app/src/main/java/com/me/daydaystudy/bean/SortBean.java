@@ -1,13 +1,14 @@
 package com.me.daydaystudy.bean;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * @author :   郗琛
  * @date :   2017/1/11
  */
 
-public class SortBean {
+public class SortBean implements Serializable {
 
     /**
      * cname : 热门分类
@@ -15,7 +16,7 @@ public class SortBean {
      */
 
     private String cname;
-    private List<NodesBean> nodes;
+    private ArrayList<NodesBean> nodes;
 
     public String getCname() {
         return cname;
@@ -25,15 +26,15 @@ public class SortBean {
         this.cname = cname;
     }
 
-    public List<NodesBean> getNodes() {
+    public ArrayList<NodesBean> getNodes() {
         return nodes;
     }
 
-    public void setNodes(List<NodesBean> nodes) {
+    public void setNodes(ArrayList<NodesBean> nodes) {
         this.nodes = nodes;
     }
 
-    public static class NodesBean {
+    public static class NodesBean implements Serializable {
         /**
          * id : 44
          * category_name : 美妆美发
@@ -55,6 +56,28 @@ public class SortBean {
         private Object category_p;
         private String category_ishot;
         private String category_fiid;
+
+        public NodesBean() {
+        }
+
+        public NodesBean(String id, String category_name, String category_fid) {
+            this.id = id;
+            this.category_name = category_name;
+            this.category_fid = category_fid;
+        }
+
+
+        public NodesBean(String id, String category_name, String category_fid, String category_order, String category_status, String category_lever, Object category_p, String category_ishot, String category_fiid) {
+            this.id = id;
+            this.category_name = category_name;
+            this.category_fid = category_fid;
+            this.category_order = category_order;
+            this.category_status = category_status;
+            this.category_lever = category_lever;
+            this.category_p = category_p;
+            this.category_ishot = category_ishot;
+            this.category_fiid = category_fiid;
+        }
 
         public String getId() {
             return id;

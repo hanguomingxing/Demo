@@ -44,6 +44,11 @@ public class HotTitleData {
     }
 
     public static class DataBean {
+        public DataBean(String tid, String name) {
+            this.tid = tid;
+            this.name = name;
+        }
+
         /**
          * tid : 77
          * name : 星座

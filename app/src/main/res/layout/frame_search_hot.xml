@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:gravity="left|center_vertical"
+            android:paddingLeft="20dp"
+            android:text="热门搜索"
+            android:textColor="@color/text_normal_color"
+            android:textSize="@dimen/setting_text_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/search_linear_border"
+            android:divider="@drawable/shape_divider_linear_pub_comment"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/setting_linear_margin_horizontal"
+            android:paddingRight="@dimen/setting_linear_margin_horizontal"
+            android:showDividers="middle" >
+
+            <RadioGroup
+                android:id="@+id/rg_search_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9dp"
+                android:divider="@drawable/shape_divider_linear_pub_comment"
+                android:orientation="horizontal"
+                android:showDividers="middle" >
+
+                <RadioButton
+                    android:id="@+id/btn_search_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/label"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="#19d688"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/btn_search_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/label"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="#ff9c00"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/btn_search_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/label"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="#34b3ee"
+                    android:textSize="14sp" />
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/rg_search_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="9dp"
+                android:divider="@drawable/shape_divider_linear_pub_comment"
+                android:orientation="horizontal"
+                android:showDividers="middle" >
+
+                <RadioButton
+                    android:id="@+id/btn_search_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/label"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="#9c3ea6"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/btn_search_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/label"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="目录"
+                    android:textColor="#7dcd43"
+                    android:textSize="14sp" />
+
+                <RadioButton
+                    android:id="@+id/btn_search_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/label"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="#f95d51"
+                    android:textSize="14sp" />
+            </RadioGroup>
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:gravity="left|center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="历史搜索"
+                    android:textColor="@color/text_normal_color"
+                    android:textSize="@dimen/setting_text_size" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="#d8d8d8" />
+
+                <ListView
+                    android:id="@+id/lv_search_history"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:divider="@drawable/shape_divider_linear"
+                    android:orientation="vertical"
+                    android:showDividers="middle" >
+                </ListView>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</FrameLayout>
