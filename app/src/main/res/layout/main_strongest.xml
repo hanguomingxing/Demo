@@ -86,6 +86,7 @@
                     android:id="@+id/main_running_img"
                     android:layout_width="0px"
                     android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
                     android:layout_weight="1" />
             </com.zhy.autolayout.AutoLinearLayout>
 

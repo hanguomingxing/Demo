@@ -88,12 +88,8 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                 } else {
                     hide(tvMyTopic, mytopic_recyclerView);
                 }
-
             }
-
-
         });
-
     }
 
     public void show(TextView textView, RecyclerView recyclerView) {

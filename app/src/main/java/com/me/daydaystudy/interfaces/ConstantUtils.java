@@ -65,7 +65,9 @@ public interface ConstantUtils {
     //小编详情
     //http://www.meirixue.com/api.php?c=course&a=getCourseInfo&courseid=4592
     String USER_XiaoBIAN="api.php?c=course&a=getCourseInfo";
-
+    String USER_ML="api.php?c=course&a=getCourseStep";
+    String USER_XQ="api.php?c=course&a=getCourseDesc";
+//    http://www.meirixue.com/api.php?c=course&a=getCourseStep
 
     // 课程详情页评论
     String USER_COMMENT = "api.php?c=course&a=getCourseComment";

@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,9 +18,7 @@ import com.google.gson.Gson;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.bean.DetailsBean;
-import com.me.daydaystudy.fragment.CommentsFragment;
 import com.me.daydaystudy.fragment.DetailsFragment;
-import com.me.daydaystudy.fragment.DirectoryFragment;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
@@ -57,9 +56,24 @@ public class DetailsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        initDateTitle();
+        initView();
+
+        initData();
+
+    }
+
+    //详情titile
+    private void initDateTitle() {
         Intent intent = getIntent();
         cid = intent.getStringExtra("cid");
-        initData();
+        TextView mine_title = (TextView) findViewById(R.id.title_text);
+        mine_title.setVisibility(View.VISIBLE);
+        mine_title.setText("课程详情");
+        findViewById(R.id.title_back).setVisibility(View.VISIBLE);
+        findViewById(R.id.title_transmit).setVisibility(View.VISIBLE);
+        findViewById(R.id.title_share).setVisibility(View.VISIBLE);
+
 
     }
 
@@ -68,11 +82,11 @@ public class DetailsActivity extends BaseActivity {
         map.put("courseid", cid);
         HttpManger.postMethod(ConstantUtils.USER_XiaoBIAN, map, new MyCallBack() {
             @Override
-            public void onFailure(Call<String> call, Throwable t) {            }
+            public void onFailure(Call<String> call, Throwable t) {
+            }
 
             @Override
             public void onResponse(String response) {
-                initView();
                 initViewi();
                 Gson gson = new Gson();
                 detailsBean = gson.fromJson(response, DetailsBean.class);
@@ -113,6 +127,7 @@ public class DetailsActivity extends BaseActivity {
         tabLayout = (TabLayout) findViewById(R.id.details_tablayout);
         viewp = (ViewPager) findViewById(R.id.vp);
         addTab();
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -138,39 +153,16 @@ public class DetailsActivity extends BaseActivity {
             @Override
             public Fragment getItem(int position) {
                 Fragment fragment = null;
-                Bundle bundle = null;
-                switch (position) {
-                    case 0:
-                        fragment = new DetailsFragment();
-                     /*   bundle = new Bundle();
-                        bundle.putString("cid0", databean.getCid());
-                        fragment.setArguments(bundle);*/
-                        break;
-                    case 1:
-                        fragment = new DirectoryFragment();
-                        break;
-                    case 2:
-                        fragment = new CommentsFragment();
-                        break;
-                }
+                fragment = new DetailsFragment();
+                Bundle bundle=new Bundle();
+                bundle.putString("id",cid);
+                bundle.putString("title",title[position]);
+                fragment.setArguments(bundle);
                 return fragment;
             }
         });
-        viewp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+        viewp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.getTabAt(position).select();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
 
     private void addTab() {

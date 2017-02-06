@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/details"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/details"
     android:orientation="vertical">
 
     <View
@@ -10,67 +10,9 @@
         android:layout_height="1px"
         android:background="#c9c9c9" />
 
-    <com.zhy.autolayout.AutoLinearLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mulu"
         android:layout_width="match_parent"
-        android:layout_height="80px"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="20px"
-                android:src="@mipmap/teacher" />
-
-            <TextView
-                android:id="@+id/detailsf_teacher"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10px" />
-        </com.zhy.autolayout.AutoLinearLayout>
-
-        <com.zhy.autolayout.AutoLinearLayout
-            android:layout_width="0px"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:src="@mipmap/school" />
-
-            <TextView
-                android:id="@+id/detailsf_school"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="10px"
-                android:text="sss" />
-        </com.zhy.autolayout.AutoLinearLayout>
-
-    </com.zhy.autolayout.AutoLinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="#c9c9c9" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <WebView
-            android:id="@+id/details_web"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></WebView>
-    </ScrollView>
 </com.zhy.autolayout.AutoLinearLayout>

@@ -367,6 +367,8 @@ public class MainFragment extends BaseFragment {
         Log.i(TAG, "--------" + sliderBeen.size());
         banner.setImages(imglist);
         banner.start();
+        /*if (){
+        }*/
         banner.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void OnBannerClick(int position) {

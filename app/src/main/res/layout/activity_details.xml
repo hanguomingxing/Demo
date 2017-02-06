@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/common_title" />
 
     <include layout="@layout/details_title" />
 
@@ -12,11 +13,11 @@
         android:id="@+id/details_tablayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15px"
+        android:layout_marginRight="15px"
+        android:layout_marginLeft="15px"
         app:tabGravity="fill"
         app:tabIndicatorColor="#f00"
-        app:tabSelectedTextColor="#f00"
-        app:tabTextAppearance="@android:style/TextAppearance.Holo.Large" />
+        app:tabSelectedTextColor="#f00" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vp"
