@@ -7,7 +7,6 @@ import android.view.View;
 
 import com.google.gson.Gson;
 import com.liaoinstan.springview.container.DefaultFooter;
-import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.adapter.HotContentAdapter;
@@ -17,6 +16,7 @@ import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
 import com.me.daydaystudy.utils.DividerItemDecoration;
+import com.me.daydaystudy.view.MyHeader;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -111,7 +111,7 @@ public class HotChildFragment extends BaseFragment implements SpringView.OnFresh
         view = View.inflate(getActivity(), R.layout.hot_child_fragmnet, null);
         hotSpringView = (SpringView) view.findViewById(R.id.hotSpringView);
         hotSpringView.setType(SpringView.Type.FOLLOW);
-        hotSpringView.setHeader(new DefaultHeader(getActivity()));
+        hotSpringView.setHeader(new MyHeader());
         hotSpringView.setFooter(new DefaultFooter(getActivity()));
         hotSpringView.setListener(this);
         hot_child_recyclerView = (RecyclerView) view.findViewById(R.id.hot_Child_RecyclerView);

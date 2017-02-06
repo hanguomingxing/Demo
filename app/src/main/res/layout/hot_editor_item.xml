@@ -5,6 +5,8 @@
     android:orientation="horizontal">
 
     <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/guanzhu"
+        android:focusable="true"
         android:layout_width="0px"
         android:layout_height="wrap_content"
         android:layout_weight="1"
@@ -15,7 +17,7 @@
             android:id="@+id/hot_like_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/like_selector"
+            android:background="@drawable/message_praise"
             android:button="@null" />
 
         <TextView

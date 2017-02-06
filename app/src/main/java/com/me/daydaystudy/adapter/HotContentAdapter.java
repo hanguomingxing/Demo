@@ -1,11 +1,13 @@
 package com.me.daydaystudy.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.HotDetailsActivity;
 import com.me.daydaystudy.bean.HotContentData;
 import com.me.daydaystudy.bean.SpannedBean;
 import com.me.daydaystudy.view.ShowDialog;
@@ -33,7 +36,6 @@ public class HotContentAdapter extends CommonAdapter<HotContentData.DataBean> {
     private final Context context;
     private final int layoutId;
     private final List<HotContentData.DataBean> datas;
-    ;
     private String[] imageData;
     private TextView textView;
     private LinearLayout.LayoutParams layoutParams;
@@ -48,12 +50,17 @@ public class HotContentAdapter extends CommonAdapter<HotContentData.DataBean> {
 
 
     @Override
-    protected void convert(ViewHolder holder, final HotContentData.DataBean dataBean, int position) {
+    protected void convert(ViewHolder holder, final HotContentData.DataBean dataBean, final int position) {
         //跳转
         holder.getConvertView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context, HotDetailsActivity.class);
+                intent.putExtra("pid", datas.get(position).getPid());
+                intent.putExtra("userName", datas.get(position).getUser_name());
+                intent.putExtra("head", datas.get(position).getUser_small_log());
+                intent.putExtra("time", datas.get(position).getP_time());
+                context.startActivity(intent);
             }
         });
 
@@ -68,6 +75,13 @@ public class HotContentAdapter extends CommonAdapter<HotContentData.DataBean> {
             @Override
             public void onClick(View view) {
                 new ShowDialog(context, dataBean.getP_title());
+            }
+        });
+        final CheckBox hot_like_iv = holder.getView(R.id.hot_like_iv);
+        holder.getView(R.id.guanzhu).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                hot_like_iv.setBackgroundResource(R.drawable.like_selector);
             }
         });
         //用户头像

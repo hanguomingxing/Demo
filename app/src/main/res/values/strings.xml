@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">天天学</string>
+    <string name="xlistview_header_hint_normal">松开刷新数据</string>
 </resources>

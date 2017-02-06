@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -38,19 +38,21 @@
         <activity android:name=".activity.DetailsActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.RegisterActivity" />
-        <activity android:name=".activity.ForgetPasswordActivity"></activity>
+        <activity android:name=".activity.ForgetPasswordActivity" />
         <activity android:name=".activity.TopicActivity" />
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.WebViewActivity" />
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.FeedBackActivity" />
         <activity android:name=".activity.CollectionActivity" />
         <activity android:name=".activity.DisCountActivity" />
         <activity android:name=".activity.MyMessageActivity" />
         <activity android:name=".activity.MyProjectActivity" />
-        <activity android:name=".activity.ClassListActivity"></activity>
-        <activity android:name=".activity.DetailsActivity" />
-        <activity android:name=".activity.TopicActivity" />
-        <activity android:name=".activity.WebViewActivity"></activity>
+        <activity android:name=".activity.ClassListActivity" />
+        <activity android:name=".activity.HotDetailsActivity" />
+        <activity android:name=".activity.PersonalMessageActivity">
+
+
+        </activity>
     </application>
 
 </manifest>

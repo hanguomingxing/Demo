@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.liaoinstan.springview.container.DefaultHeader;
 import com.liaoinstan.springview.widget.SpringView;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.activity.TopicActivity;
@@ -21,6 +20,7 @@ import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
 import com.me.daydaystudy.utils.DividerItemDecoration;
 import com.me.daydaystudy.utils.GlideImageLoader;
+import com.me.daydaystudy.view.MyHeader;
 import com.youth.banner.Banner;
 import com.youth.banner.Transformer;
 import com.youth.banner.listener.OnBannerClickListener;
@@ -98,14 +98,14 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                 } else {
                     hide(tvTopic, topic_recyclerView);
                 }
-                //我的圈子
+               /* //我的圈子
                 if (mycircle != null && mycircle.size() > 0) {
                     show(tvMyTopic, mytopic_recyclerView);
                     myHotList.clear();
                     myHotList.addAll(circle);
                 } else {
                     hide(tvMyTopic, mytopic_recyclerView);
-                }
+                }*/
                 springView.onFinishFreshAndLoad();
                 if (inflate.getParent() == null)
                     requestShowNormalView(inflate);
@@ -136,8 +136,14 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
         topic_recyclerView = (RecyclerView) inflate.findViewById(R.id.topic_recyclerView);
         tvMyTopic = (TextView) inflate.findViewById(R.id.tvMyTopic);
         mytopic_recyclerView = (RecyclerView) inflate.findViewById(R.id.myTopic_recyclerView);
+        mytopic_recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
         springView = (SpringView) inflate.findViewById(R.id.springView);
-        springView.setHeader(new DefaultHeader(getActivity()));
+        springView.setHeader(new MyHeader());
         springView.setType(SpringView.Type.FOLLOW);
         springView.setListener(this);
 
@@ -160,22 +166,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
         commonAdapter = new CommonAdapter<TopicData.DataBean.CircleBean>(getActivity(), R.layout.hotcircle_recycleritem_layout, hotList) {
             @Override
             protected void convert(final ViewHolder holder, final TopicData.DataBean.CircleBean circleBean, final int position) {
-                holder.getConvertView().setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), TopicActivity.class);
-                        intent.putExtra("nid",circleBean.getNid());
-                        intent.putExtra("title",circleBean.getN_title());
-                        startActivity(intent);
-                    }
-                });
-
-                holder.setText(R.id.topic_Title, circleBean.getN_title());
-                holder.setText(R.id.topic_Brief, circleBean.getN_brief());
-                holder.setText(R.id.topic_userCount, circleBean.getN_user_count() + "人关注");
-                holder.setText(R.id.topic_postCount, circleBean.getN_post_count() + "帖子");
-                ImageView topic_iv = holder.getView(R.id.topic_iv);
-                Glide.with(getActivity()).load(circleBean.getN_small_img()).into(topic_iv);
+                addData(holder, circleBean);
 
                 ImageView addMyTopic = holder.getView(R.id.addMyTopic);
                 addMyTopic.setOnClickListener(new View.OnClickListener() {
@@ -183,13 +174,49 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                     public void onClick(View view) {
                         int adapterPosition = holder.getAdapterPosition();
                         //移除
+                        myHotList.add(hotList.get(adapterPosition));
                         hotList.remove(adapterPosition);
+                        if (myHotList != null && myHotList.size() > 0) {
+                            show(tvMyTopic, mytopic_recyclerView);
+                            mytopic_recyclerView.setAdapter(new CommonAdapter<TopicData.DataBean.CircleBean>(getActivity(), R.layout.hotcircle_recycleritem_layout, myHotList) {
+                                                                @Override
+                                                                protected void convert(ViewHolder holder, TopicData.DataBean.CircleBean circleBean, int position) {
+                                                                    addData(holder, circleBean);
+                                                                    holder.getView(R.id.addMyTopic).setVisibility(View.GONE);
+                                                                    holder.getView(R.id.topicBack).setVisibility(View.VISIBLE);
+                                                                }
+                                                            }
+
+                            );
+                        } else {
+                            hide(tvMyTopic, mytopic_recyclerView);
+                        }
                         commonAdapter.notifyItemRemoved(adapterPosition);
                     }
                 });
             }
         };
         topic_recyclerView.setAdapter(commonAdapter);
+    }
+
+
+    private void addData(ViewHolder holder, final TopicData.DataBean.CircleBean circleBean) {
+        holder.getConvertView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), TopicActivity.class);
+                intent.putExtra("nid", circleBean.getNid());
+                intent.putExtra("title", circleBean.getN_title());
+                startActivity(intent);
+            }
+        });
+
+        holder.setText(R.id.topic_Title, circleBean.getN_title());
+        holder.setText(R.id.topic_Brief, circleBean.getN_brief());
+        holder.setText(R.id.topic_userCount, circleBean.getN_user_count() + "人关注");
+        holder.setText(R.id.topic_postCount, circleBean.getN_post_count() + "帖子");
+        ImageView topic_iv = holder.getView(R.id.topic_iv);
+        Glide.with(getActivity()).load(circleBean.getN_small_img()).into(topic_iv);
     }
 
     /**
@@ -208,7 +235,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
 
     @Override
     public void OnBannerClick(int position) {
-        Toast.makeText(getActivity(), "老子跳了" + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "我跳转了" + position, Toast.LENGTH_SHORT).show();
     }
 
     /**
