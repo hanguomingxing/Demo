@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.app.MyApplication;
 import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.bean.LoginBean;
 import com.me.daydaystudy.interfaces.ConstantUtils;
@@ -94,7 +95,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         final LoginBean loginBean = new Gson().fromJson(response, LoginBean.class);
                         switch (loginBean.getStatus()) {
                             case 200:           //登陆成功
-                                System.out.println(response);
+                                MyApplication.setIsLoginEd(true);
                                 finish();
                                 break;
                             case 201:           //密码错误

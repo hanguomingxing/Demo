@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 import com.me.daydaystudy.R;
 import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.bean.ClassListBean;
+import com.me.daydaystudy.bean.ClassListTitle;
 import com.me.daydaystudy.bean.SortBean;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
@@ -41,8 +42,11 @@ import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -102,13 +106,13 @@ public class ClassListActivity extends BaseActivity {
     private int currentPage;
     private String isfree = "";
     private String order = "";
-    private ArrayList<SortBean> sortBean;
     private ListView firstList;
     private ListView secondList;
     private ListView thirdlyList;
     private ArrayList<ClassListBean.DatalistBean> classListBeanArrayList = new ArrayList<>();
     private CommonAdapter<ClassListBean.DatalistBean> commonAdapter;
     private PopupWindow popupWindowName;
+    private ArrayList<ClassListTitle> classListTitles = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,20 +175,25 @@ public class ClassListActivity extends BaseActivity {
     private void initData() {
         id = getIntent().getStringExtra("id");
         classNameRb.setText(getIntent().getStringExtra("title"));
-        Object[] datas = (Object[]) getIntent().getSerializableExtra("data");
-        sortBean = new ArrayList<>();
-        for (int i = 1; i < datas.length; i++) {
-            sortBean.add((SortBean) datas[i]);
-        }
-        SortBean sortBean = new SortBean();
-        sortBean.setCname("其他课程");
-        ArrayList<SortBean.NodesBean> nodes = new ArrayList<>();
-        nodes.add(new SortBean.NodesBean("", "全部", "310"));
-        nodes.add(new SortBean.NodesBean("311", "K12", "310"));
-        nodes.add(new SortBean.NodesBean("315", "亲子", "310"));
-        sortBean.setNodes(nodes);
-        this.sortBean.add(sortBean);
+        getClassListTitle();
         getNewData();
+    }
+
+    private void getClassListTitle() {
+        HttpManger.getMethod(ConstantUtils.ClassListTitleUrl, new MyCallBack() {
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(ClassListActivity.this, "获取title失败", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onResponse(String response) {
+                ClassListTitle[] classListTitles = new Gson().fromJson(response, ClassListTitle[].class);
+                for (int i = 0; i < classListTitles.length; i++) {
+                    ClassListActivity.this.classListTitles.add(classListTitles[i]);
+                }
+            }
+        });
     }
 
     /**
@@ -370,17 +379,16 @@ public class ClassListActivity extends BaseActivity {
         secondList = (ListView) view.findViewById(R.id.subListView);
         thirdlyList = (ListView) view.findViewById(R.id.threeListView);
 
-        firstList.setAdapter(new com.me.daydaystudy.adapter.BaseAdapter<SortBean>(sortBean) {
+        firstList.setAdapter(new com.me.daydaystudy.adapter.BaseAdapter<ClassListTitle>(classListTitles) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView textView = ViewUtils.inflate(getActivity(), android.R.layout.simple_list_item_1);
-                textView.setText(sortBean.get(position).getCname());
+                textView.setText(classListTitles.get(position).getMenu().getCategory_name());
                 setFirstListListen(textView, position);
                 return textView;
             }
         });
         setSecondAdapter(0);
-
     }
 
     /**
@@ -403,16 +411,17 @@ public class ClassListActivity extends BaseActivity {
      * @param parentPosition
      */
     private void setSecondAdapter(final int parentPosition) {
-        final ArrayList<SortBean.NodesBean> nodes = sortBean.get(parentPosition).getNodes();
-        secondList.setAdapter(new com.me.daydaystudy.adapter.BaseAdapter<SortBean.NodesBean>(nodes) {
+        final ArrayList<ClassListTitle.NodesBean> nodes = classListTitles.get(parentPosition).getNodes();
+        secondList.setAdapter(new com.me.daydaystudy.adapter.BaseAdapter<ClassListTitle.NodesBean>(nodes) {
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 TextView textView = ViewUtils.inflate(getActivity(), android.R.layout.simple_list_item_1);
-                textView.setText(nodes.get(position).getCategory_name());
+                textView.setText(nodes.get(position).getMenu2().getCategory_name());
                 setSecondListListen(textView, parentPosition, position);
                 return textView;
             }
         });
+        setThirdlyAdapter(parentPosition, 0);
     }
 
     /**
@@ -425,14 +434,54 @@ public class ClassListActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (parentPosition == 0) {
-                    id = sortBean.get(grandPosition).getNodes().get(1).getCategory_fid();
+                    id = classListTitles.get(grandPosition).getNodes().get(parentPosition).getMenu2().getCategory_name();
                     popupWindowName.dismiss();
-                    classNameRb.setText(sortBean.get(grandPosition).getCname());
+                    classNameRb.setText(classListTitles.get(grandPosition).getNodes().get(parentPosition).getMenu2().getCategory_name());
                     resetAndRefresh();
                 } else {
-//                thirdlyList.setAdapter();
+                    setThirdlyAdapter(grandPosition, parentPosition);
                 }
             }
         });
     }
+
+
+    /**
+     * 设置第三个listView的适配器
+     *
+     * @param grandPosition
+     * @param parentPosition
+     */
+    private void setThirdlyAdapter(final int grandPosition, final int parentPosition) {
+        final ArrayList<ClassListTitle.NodesBean.Nodes2Bean> nodes = classListTitles.get(grandPosition).getNodes().get(parentPosition).getNodes2();
+
+        thirdlyList.setAdapter(new com.me.daydaystudy.adapter.BaseAdapter<ClassListTitle.NodesBean.Nodes2Bean>(nodes) {
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                TextView textView = ViewUtils.inflate(getActivity(), android.R.layout.simple_list_item_1);
+                textView.setText(nodes.get(position).getMenu3().getCategory_name());
+                setSecondListListen(textView, parentPosition, position);
+                setThirdlyListListen(textView, grandPosition, parentPosition, position);
+                return textView;
+            }
+        });
+    }
+
+    /**
+     * 设置第三个listView的监听
+     *
+     * @param textView
+     */
+    private void setThirdlyListListen(TextView textView, final int grandPosition, final int parentPosition, final int position) {
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = classListTitles.get(grandPosition).getNodes().get(parentPosition).getNodes2().get(position).getMenu3().getId();
+                popupWindowName.dismiss();
+                classNameRb.setText(classListTitles.get(grandPosition).getNodes().get(parentPosition).getNodes2().get(position).getMenu3().getCategory_name());
+                resetAndRefresh();
+            }
+        });
+    }
+
 }
