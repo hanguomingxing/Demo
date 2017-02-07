@@ -1,5 +1,6 @@
 package com.me.daydaystudy.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.me.daydaystudy.activity.FeedBackActivity;
 import com.me.daydaystudy.activity.LoginActivity;
 import com.me.daydaystudy.activity.MyMessageActivity;
 import com.me.daydaystudy.activity.MyProjectActivity;
+import com.me.daydaystudy.activity.PersonalMessageActivity;
 import com.me.daydaystudy.activity.SettingActivity;
 import com.me.daydaystudy.app.MyApplication;
 import com.me.daydaystudy.base.BaseActivity;
@@ -36,6 +38,7 @@ import butterknife.OnClick;
 public class MineFragment extends BaseFragment implements View.OnClickListener {
 
     @Bind(R.id.head_image)
+
     CircleImageView headImage;
     @Bind(R.id.btn_land)
     Button btnLand;
@@ -57,6 +60,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     AutoLinearLayout feedback;
     @Bind(R.id.imageView2)
     ImageView imageView2;
+
     @Bind(R.id.setting)
     AutoLinearLayout setting;
     @Bind(R.id.activity_mine_fragment)
@@ -115,10 +119,15 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.login:
             case R.id.head_image://未登录头像
+
+                break;
             case R.id.btn_land:
                 jumpLoginActivity();//跳转登陆界面
                 break;
             case R.id.loginEd:
+                Intent intent = new Intent(getActivity(), PersonalMessageActivity.class);
+                startActivity(intent);
+                break;
             case R.id.loginMore:
             case R.id.imageView2://登录头像
                 // TODO: 2017/1/23 跳转个人信息

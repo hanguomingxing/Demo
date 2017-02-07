@@ -127,8 +127,6 @@ public class TopicActivity extends BaseActivity {
                     setTopData(data);
                 }
             }
-
-
         });
 
     }

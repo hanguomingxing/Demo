@@ -12,7 +12,7 @@
         android:layout_height="290px"
         android:background="@drawable/my2"
         android:orientation="horizontal"
-        android:visibility="gone">
+        >
 
         <!--头像-->
         <com.me.daydaystudy.view.CircleImageView
