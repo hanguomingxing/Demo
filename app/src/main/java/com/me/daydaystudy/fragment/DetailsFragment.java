@@ -41,8 +41,8 @@ public class DetailsFragment extends BaseFragment {
     private XQBean xqBean;
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
         String id = getArguments().getString("id");
         title = getArguments().getString("title");
         if (title.equals("详情")) {

@@ -79,11 +79,7 @@ public class MainFragment extends BaseFragment {
     private List<MainBean.DataBean.IndexothersBean> indexothersBeen;
     private RecyclerView main_learn_rv;
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        init();
-    }
+
 
 
     @Override

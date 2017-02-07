@@ -55,7 +55,7 @@ public class TopicActivity extends BaseActivity {
     private TextView titleView;
     private String[] Type = {"最新", "最热"};
     private String nid;
-    private int order=1;
+    private int order = 1;
     public AppBarLayout appBar;
 
     @Override
@@ -88,7 +88,7 @@ public class TopicActivity extends BaseActivity {
                 HotTopicFragment hotTopicFragment = new HotTopicFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("nid", nid);
-                bundle.putString("order", (order++)+"");
+                bundle.putString("order", (order++) + "");
                 hotTopicFragment.setArguments(bundle);
                 return hotTopicFragment;
             }
@@ -166,7 +166,6 @@ public class TopicActivity extends BaseActivity {
         super.onDestroy();
         ButterKnife.unbind(this);
     }
-
 
 
 }
