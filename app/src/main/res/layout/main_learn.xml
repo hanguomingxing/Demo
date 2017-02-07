@@ -3,7 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+  <!--  <android.support.v7.widget.RecyclerView
+        android:id="@+id/duocai"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+    </android.support.v7.widget.RecyclerView>-->
     <com.zhy.autolayout.AutoLinearLayout
         android:layout_width="match_parent"
         android:layout_height="240px"
@@ -18,6 +23,7 @@
             android:orientation="vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto1"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"
@@ -41,6 +47,7 @@
             </com.zhy.autolayout.AutoLinearLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto4"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"
@@ -71,6 +78,7 @@
             android:orientation="vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto2"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"
@@ -92,6 +100,7 @@
             </com.zhy.autolayout.AutoLinearLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto5"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"
@@ -121,6 +130,7 @@
             android:orientation="vertical">
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto3"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"
@@ -142,6 +152,7 @@
             </com.zhy.autolayout.AutoLinearLayout>
 
             <com.zhy.autolayout.AutoLinearLayout
+                android:id="@+id/auto6"
                 android:layout_width="match_parent"
                 android:layout_height="0px"
                 android:layout_weight="1"

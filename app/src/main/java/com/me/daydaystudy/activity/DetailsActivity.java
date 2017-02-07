@@ -126,24 +126,7 @@ public class DetailsActivity extends BaseActivity {
     private void initView() {
         tabLayout = (TabLayout) findViewById(R.id.details_tablayout);
         viewp = (ViewPager) findViewById(R.id.vp);
-        addTab();
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewp.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
+        tabLayout.setupWithViewPager(viewp);
         viewp.setAdapter(new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount() {
@@ -160,14 +143,15 @@ public class DetailsActivity extends BaseActivity {
                 fragment.setArguments(bundle);
                 return fragment;
             }
+
+            @Override
+            public CharSequence getPageTitle(int position) {
+                return title[position];
+            }
         });
         viewp.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
     }
 
-    private void addTab() {
-        tabLayout.addTab(tabLayout.newTab().setText(title[0]), false);
-        tabLayout.addTab(tabLayout.newTab().setText(title[1]), 1, true);
-        tabLayout.addTab(tabLayout.newTab().setText(title[2]), false);
-    }
+
 }

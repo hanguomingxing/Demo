@@ -1,5 +1,6 @@
 package com.me.daydaystudy.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -24,7 +25,6 @@ import com.me.daydaystudy.R;
 import com.me.daydaystudy.base.BaseActivity;
 import com.me.daydaystudy.bean.ClassListBean;
 import com.me.daydaystudy.bean.ClassListTitle;
-import com.me.daydaystudy.bean.SortBean;
 import com.me.daydaystudy.interfaces.ConstantUtils;
 import com.me.daydaystudy.manager.HttpManger;
 import com.me.daydaystudy.manager.MyCallBack;
@@ -41,12 +41,8 @@ import com.zhy.adapter.recyclerview.base.ViewHolder;
 import com.zhy.autolayout.AutoLinearLayout;
 import com.zhy.autolayout.AutoRelativeLayout;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -144,6 +140,9 @@ public class ClassListActivity extends BaseActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(mContext, datalistBean.getCid(), Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(getActivity(),DetailsActivity.class);
+                        intent.putExtra("cid",datalistBean.getCid());
+                        startActivity(intent);
                     }
                 });
             }

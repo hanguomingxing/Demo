@@ -10,6 +10,18 @@
         android:layout_height="1px"
         android:background="#c9c9c9" />
 
+    <TextView
+        android:id="@+id/zhang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="asd"
+         />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#c9c9c9" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mulu"
         android:layout_width="match_parent"
