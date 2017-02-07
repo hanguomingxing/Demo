@@ -105,6 +105,7 @@ public class TopicFragment extends BaseFragment implements OnBannerClickListener
                     myHotList.addAll(circle);
                 } else {
                     hide(tvMyTopic, mytopic_recyclerView);
+                }
                 }*/
                 springView.onFinishFreshAndLoad();
                 if (inflate.getParent() == null)

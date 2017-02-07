@@ -2,8 +2,8 @@ package com.me.daydaystudy.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -152,7 +152,7 @@ public class MainFragment extends BaseFragment {
         main_learn_rv.setAdapter(new CommonAdapter<MainBean.DataBean.IndexothersBean>(getContext(), R.layout.main_recommended_rv_item, indexothersBeen) {
 
             @Override
-            protected void convert(ViewHolder holder, MainBean.DataBean.IndexothersBean indexothersBean, int position) {
+            protected void convert(ViewHolder holder, MainBean.DataBean.IndexothersBean indexothersBean, final int position) {
                 ImageView main_recommended_img = (ImageView) holder.itemView.findViewById(R.id.main_recommended_img);
                 Glide.with(getContext()).load(indexothersBeen.get(position).getCourse_pic()).into(main_recommended_img);
                 holder.setText(R.id.main_recommended_course_name, indexothersBeen.get(position).getCourse_name());
@@ -167,7 +167,8 @@ public class MainFragment extends BaseFragment {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                        Intent intent = new Intent(getContext(), DetailsActivity.class);
+                        intent.putExtra("cid", indexothersBeen.get(position).getCid());
                         startActivity(intent);
                     }
                 });
@@ -180,6 +181,25 @@ public class MainFragment extends BaseFragment {
         main_recommended_love = (ImageView) view.findViewById(R.id.main_recommended_love);
         Glide.with(getActivity()).load(topBean.get(0).getCourse_pic()).into(main_recommended_memory);
         Glide.with(getActivity()).load(topBean.get(1).getCourse_pic()).into(main_recommended_love);
+        main_recommended_memory.setOnClickListener(new View.OnClickListener() {
+            public FragmentTransaction transaction;
+            public FragmentManager manager;
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("cid", topBean.get(0).getCid());
+                startActivity(intent);
+            }
+        });
+        main_recommended_love.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("cid", topBean.get(1).getCid());
+                startActivity(intent);
+            }
+        });
         main_recommended_rv = (RecyclerView) view.findViewById(R.id.main_recommended_rv);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
             @Override
@@ -191,7 +211,7 @@ public class MainFragment extends BaseFragment {
         main_recommended_rv.setAdapter(new CommonAdapter<MainBean.DataBean.IndexrecommendBean.ListviewBean>(getContext(), R.layout.main_recommended_rv_item, listviewBeen) {
 
             @Override
-            protected void convert(ViewHolder holder, MainBean.DataBean.IndexrecommendBean.ListviewBean listviewBean, int position) {
+            protected void convert(ViewHolder holder, MainBean.DataBean.IndexrecommendBean.ListviewBean listviewBean, final int position) {
                 ImageView main_recommended_img = (ImageView) holder.itemView.findViewById(R.id.main_recommended_img);
                 Glide.with(getContext()).load(listviewBeen.get(position).getCourse_pic()).into(main_recommended_img);
                 holder.setText(R.id.main_recommended_course_name, listviewBeen.get(position).getCourse_name());
@@ -203,10 +223,14 @@ public class MainFragment extends BaseFragment {
                     holder.setText(main_recommended_price, "¥" + listviewBeen.get(position).getCourse_price()).setTextColor(main_recommended_price, Color.RED);
                 }
                 holder.setText(R.id.main_recommended_usercount, listviewBeen.get(position).getUsercount() + "人在学");
+
+
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(), "我是Recycler", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), DetailsActivity.class);
+                        intent.putExtra("cid", listviewBeen.get(position).getCid());
+                        startActivity(intent);
                     }
                 });
 
@@ -266,11 +290,20 @@ public class MainFragment extends BaseFragment {
         recy.setLayoutManager(layoutManager);
         recy.setAdapter(new CommonAdapter<MainBean.DataBean.HotcourseBean>(getActivity(), R.layout.main_hot_vp_item, hotcourseBeen) {
             @Override
-            protected void convert(ViewHolder holder, MainBean.DataBean.HotcourseBean hotcourseBean, int position) {
+            protected void convert(ViewHolder holder, MainBean.DataBean.HotcourseBean hotcourseBean, final int position) {
                 ImageView main_hot_rv_img = holder.getView(R.id.main_hot_rv_img);
                 Glide.with(getContext()).load(hotcourseBeen.get(position).getImg()).into(main_hot_rv_img);
                 holder.setText(R.id.main_hot_rv_title, hotcourseBeen.get(position).getTitle());
                 holder.setText(R.id.main_hot_rv_name, hotcourseBeen.get(position).getName());
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), DetailsActivity.class);
+                        intent.putExtra("cid", hotcourseBeen.get(position).getCid());
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 
@@ -300,6 +333,32 @@ public class MainFragment extends BaseFragment {
         main_thinking_think.setText(adlistBeen.get(2).getName());
         main_thinking_revolution.setText(adlistBeen.get(2).getTitle());
         Glide.with(getActivity()).load(adlistBeen.get(2).getImg()).into(main_thinking_img);
+
+        main_strongest_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("cid", adlistBeen.get(0).getUrl());
+                startActivity(intent);
+            }
+        });
+        main_running_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("cid", adlistBeen.get(1).getUrl());
+                startActivity(intent);
+            }
+        });
+        main_thinking_img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), DetailsActivity.class);
+                intent.putExtra("cid", adlistBeen.get(2).getUrl());
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void initShuffling() {
@@ -314,6 +373,8 @@ public class MainFragment extends BaseFragment {
         Log.i(TAG, "--------" + sliderBeen.size());
         banner.setImages(imglist);
         banner.start();
+        /*if (){
+        }*/
         banner.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void OnBannerClick(int position) {

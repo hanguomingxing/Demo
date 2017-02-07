@@ -1,5 +1,6 @@
 package com.me.daydaystudy.factory;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
 import com.me.daydaystudy.fragment.AttentionFragment;
@@ -12,8 +13,10 @@ import com.me.daydaystudy.fragment.TopicFragment;
  */
 
 public class CircleyFragmentFactory {
+
     public static Fragment getFragmentInstance(int position) {
         Fragment fragment = null;
+        Bundle bundle = null;
         switch (position) {
             case 0:
                 fragment = new TopicFragment();
