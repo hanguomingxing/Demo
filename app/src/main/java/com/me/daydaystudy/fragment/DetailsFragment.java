@@ -39,10 +39,11 @@ public class DetailsFragment extends BaseFragment {
     private String title;
     private int num = 1;
     private XQBean xqBean;
+    private CatalogBean catalogBean;
 
     @Override
-    protected void initData() {
-        super.initData();
+    protected void init() {
+        super.init();
         String id = getArguments().getString("id");
         title = getArguments().getString("title");
         if (title.equals("详情")) {
@@ -74,7 +75,7 @@ public class DetailsFragment extends BaseFragment {
                         initView1();
                         break;
                     case "目录":
-                        CatalogBean catalogBean = gson.fromJson(response, CatalogBean.class);
+                         catalogBean = gson.fromJson(response, CatalogBean.class);
                         nodesBean = catalogBean.getData().get(0).getNodes();
                         initView();
                         break;
@@ -111,6 +112,10 @@ public class DetailsFragment extends BaseFragment {
     }
 
     private void recycler() {
+        TextView textView=(TextView)view.findViewById(R.id.zhang);
+        textView.setText("第一章:"+catalogBean.getCourse_name());
+        textView.setTextSize(19);
+
         mulu = (RecyclerView) view.findViewById(R.id.mulu);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mulu.setLayoutManager(layoutManager);

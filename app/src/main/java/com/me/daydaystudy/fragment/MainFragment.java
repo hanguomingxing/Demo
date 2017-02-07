@@ -2,6 +2,8 @@ package com.me.daydaystudy.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.me.daydaystudy.R;
+import com.me.daydaystudy.activity.ClassListActivity;
 import com.me.daydaystudy.activity.DetailsActivity;
 import com.me.daydaystudy.base.BaseFragment;
 import com.me.daydaystudy.bean.MainBean;
@@ -27,6 +30,7 @@ import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerClickListener;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
+import com.zhy.autolayout.AutoLinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +44,7 @@ import static com.me.daydaystudy.R.id.main_recommended_price;
  * @date :   2017/1/10
  */
 
-public class MainFragment extends BaseFragment {
+public class MainFragment extends BaseFragment implements View.OnClickListener {
     private static final String TAG = "---------";
     private MainBean mainBean;
     public List<MainBean.DataBean.SliderBean> sliderBeen;
@@ -261,7 +265,6 @@ public class MainFragment extends BaseFragment {
 //----------------------------------------塞数据------------------------------------------------
         Glide.with(getActivity()).load(hotcategoryBeen.get(0).getImg()).into(main_gride_imglife);
         main_gride_life.setText(hotcategoryBeen.get(0).getCname());
-
         Glide.with(getActivity()).load(hotcategoryBeen.get(1).getImg()).into(main_gride_imghobby);
         main_gride_hobby.setText(hotcategoryBeen.get(1).getCname());
 
@@ -277,6 +280,59 @@ public class MainFragment extends BaseFragment {
         Glide.with(getActivity()).load(hotcategoryBeen.get(5).getImg()).into(main_gride_imgclassification);
         main_gride_classification.setText(hotcategoryBeen.get(5).getCname());
 
+        AutoLinearLayout auto1 = (AutoLinearLayout) view.findViewById(R.id.auto1);
+        AutoLinearLayout auto2 = (AutoLinearLayout) view.findViewById(R.id.auto2);
+        AutoLinearLayout auto3 = (AutoLinearLayout) view.findViewById(R.id.auto3);
+        AutoLinearLayout auto4 = (AutoLinearLayout) view.findViewById(R.id.auto4);
+        AutoLinearLayout auto5 = (AutoLinearLayout) view.findViewById(R.id.auto5);
+        AutoLinearLayout auto6 = (AutoLinearLayout) view.findViewById(R.id.auto6);
+        auto1.setOnClickListener(this);
+        auto2.setOnClickListener(this);
+        auto3.setOnClickListener(this);
+        auto4.setOnClickListener(this);
+        auto5.setOnClickListener(this);
+        auto6.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.auto1:
+                Intent intent = new Intent(getContext(), ClassListActivity.class);
+                intent.putExtra("id", hotcategoryBeen.get(0).getId());
+                intent.putExtra("title", hotcategoryBeen.get(0).getCname());
+                startActivity(intent);
+                break;
+            case R.id.auto2:
+                Intent intent1 = new Intent(getContext(), ClassListActivity.class);
+                intent1.putExtra("id", hotcategoryBeen.get(1).getId());
+                intent1.putExtra("title", hotcategoryBeen.get(1).getCname());
+                startActivity(intent1);
+                break;
+            case R.id.auto3:
+                Intent intent3 = new Intent(getContext(), ClassListActivity.class);
+                intent3.putExtra("id", hotcategoryBeen.get(2).getId());
+                intent3.putExtra("title", hotcategoryBeen.get(2).getCname());
+                startActivity(intent3);
+                break;
+            case R.id.auto4:
+                Intent intent4 = new Intent(getContext(), ClassListActivity.class);
+                intent4.putExtra("id", hotcategoryBeen.get(3).getId());
+                intent4.putExtra("title", hotcategoryBeen.get(3).getCname());
+                startActivity(intent4);
+                break;
+            case R.id.auto5:
+                Intent intent5 = new Intent(getContext(), ClassListActivity.class);
+                intent5.putExtra("id", hotcategoryBeen.get(4).getId());
+                intent5.putExtra("title", hotcategoryBeen.get(4).getCname());
+                startActivity(intent5);
+                break;
+            /*case R.id.auto6:
+                Intent intent2=new Intent(getContext(),CategoryFragment.class);
+                startActivity(intent2);
+                break;*/
+        }
     }
 
     private void initHot() {
@@ -373,13 +429,29 @@ public class MainFragment extends BaseFragment {
         Log.i(TAG, "--------" + sliderBeen.size());
         banner.setImages(imglist);
         banner.start();
-        /*if (){
-        }*/
+
         banner.setOnBannerClickListener(new OnBannerClickListener() {
             @Override
             public void OnBannerClick(int position) {
-                Toast.makeText(getContext(), "被点击了", Toast.LENGTH_SHORT).show();
+                if (position % 2 == 0) {
+                   /* Intent intent = new Intent(getContext(), DetailsActivity.class);
+                    intent.putExtra("cid", sliderBeen.get(position).getUrl());
+                    startActivity(intent);*/
+                    Toast.makeText(getActivity(), "sss"+position, Toast.LENGTH_SHORT).show();
+
+                } else {
+                    if (position == 1) {
+                        Toast.makeText(getActivity(), "我要下载喝水软件", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getActivity(), "vvvv"+position, Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getContext(), DetailsActivity.class);
+                        intent.putExtra("cid", sliderBeen.get(position-1).getUrl());
+                        startActivity(intent);
+                    }
+                }
             }
         });
     }
+
+
 }

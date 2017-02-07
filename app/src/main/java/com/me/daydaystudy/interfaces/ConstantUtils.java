@@ -78,7 +78,6 @@ public interface ConstantUtils {
     String USER_XQ="api.php?c=course&a=getCourseDesc";
 //    http://www.meirixue.com/api.php?c=course&a=getCourseStep
 
-    String USER_MAIN = "api.php?a=indexv9&c=index";
     // 课程详情页评论
     String USER_COMMENT = "api.php?c=course&a=getCourseComment";
     // 我的课程，包括正在学和已学完
